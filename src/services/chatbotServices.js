@@ -45,7 +45,7 @@ let getUserName = (sender_psid) => {
 					body = JSON.parse(body);
 					// "first_name": "Peter",
 					// "last_name": "Chang",
-					let username = `${body.first_name} ${body.last_name}`;
+					let username = `${body.last_name} ${body.first_name}`;
 					resolve(username);
 				} else {
 					console.error("Unable to send message:" + err);
