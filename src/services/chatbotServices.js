@@ -33,7 +33,7 @@ let handleGetStarted = () => {
 	return Promise(async (resolve, reject) => {
 		try {
 			let response = { text: "Chào bạn đã đến với page của mìnk =3" };
-			await this.callSendAPI(response);
+			await callSendAPI(response);
 			resolve("done");
 		} catch (e) {
 			reject(e);

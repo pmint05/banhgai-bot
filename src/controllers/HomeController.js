@@ -128,7 +128,7 @@ async function handlePostback(sender_psid, received_postback) {
 			break;
 		case "GET_STARTED":
 			await chatbotServices.handleGetStarted();
-			response = { text: "Chào bạn đã đến với page của mìnk =3" };
+			// response = { text: "Chào bạn đã đến với page của mìnk =3" };
 			break;
 		default:
 			response = { text: `Oops, Xin lỗi tôi không hiểu ${payload}` };
