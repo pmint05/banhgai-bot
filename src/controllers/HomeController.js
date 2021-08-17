@@ -1,5 +1,6 @@
 require("dotenv").config();
 import request from "request";
+import chatbotServices from "../services/chatbotServices";
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
@@ -111,7 +112,7 @@ function handleMessage(sender_psid, received_message) {
 }
 
 // Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback) {
+async function handlePostback(sender_psid, received_postback) {
 	let response;
 
 	// Get the payload for the postback
@@ -126,6 +127,7 @@ function handlePostback(sender_psid, received_postback) {
 			response = { text: "Oops, try sending another image." };
 			break;
 		case "GET_STARTED":
+			await chatbotServices.handleGetStarted();
 			response = { text: "Chào bạn đã đến với page của mìnk =3" };
 			break;
 		default:
@@ -133,7 +135,7 @@ function handlePostback(sender_psid, received_postback) {
 	}
 
 	// Send the message to acknowledge the postback
-	callSendAPI(sender_psid, response);
+	// callSendAPI(sender_psid, response);
 }
 
 // Sends response messages via the Send API
