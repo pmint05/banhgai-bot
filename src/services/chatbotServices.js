@@ -3,6 +3,7 @@ import { response } from "express";
 import request from "request";
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const IMAGE_GET_STARTED = "https://i.postimg.cc/rs93Bgqg/avt-remake.png";
 
 let callSendAPI = (sender_psid, response) => {
 	// Construct the message body
@@ -60,15 +61,58 @@ let handleGetStarted = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			let username = await getUserName(sender_psid);
-			let response = {
+			let response_1 = {
 				text: `Chào ${username} đã đến với page của mìnk =3`,
 			};
+
+			let response_2 = sendGetStartedTemplate();
+
+			//send text message
 			await callSendAPI(sender_psid, response);
+
+			//send generic template message
+
 			resolve("done");
 		} catch (e) {
 			reject(e);
 		}
 	});
+};
+
+let sendGetStartedTemplate = () => {
+	let response = {
+		attachment: {
+			type: "template",
+			payload: {
+				template_type: "generic",
+				elements: [
+					{
+						title: "Xin chào bạn đã đến với page của mình!",
+						subtitle: "Mời bạn chọn",
+						image_url: IMAGE_GET_STARTED,
+						buttons: [
+							{
+								type: "postback",
+								title: "LỰA CHỌN 1",
+								payload: "CHOICE_1",
+							},
+							{
+								type: "postback",
+								title: "LỰA CHỌN 2",
+								payload: "CHOICE_2",
+							},
+							{
+								type: "postback",
+								title: "LỰA CHỌN 3",
+								payload: "CHOICE_3",
+							},
+						],
+					},
+				],
+			},
+		},
+	};
+	return response;
 };
 
 module.exports = {
