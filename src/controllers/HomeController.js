@@ -126,6 +126,7 @@ async function handlePostback(sender_psid, received_postback) {
 		case "no":
 			response = { text: "Oops, try sending another image." };
 			break;
+		case "RESTART_CHATBOT":
 		case "GET_STARTED":
 			await chatbotServices.handleGetStarted(sender_psid);
 			break;
@@ -194,9 +195,55 @@ let setupProfile = async (req, res) => {
 
 	return res.send("Setup user profile succeeds!");
 };
+let setupPersistentMenu = async (req, res) => {
+	//call profile facebook api
+	// Construct the message body
+	let request_body = {
+		persistent_menu: [
+			{
+				locale: "default",
+				composer_input_disabled: false,
+				call_to_actions: [
+					{
+						type: "postback",
+						title: "Khởi đỘng lại bot",
+						payload: "RESTART_CHATBOT",
+					},
+					// {
+					// 	type: "web_url",
+					// 	title: "Shop now",
+					// 	url: "https://www.originalcoastclothing.com/",
+					// 	webview_height_ratio: "full",
+					// },
+				],
+			},
+		],
+	};
+
+	// Send the HTTP request to the Messenger Platform
+	await request(
+		{
+			uri: `https://graph.facebook.com/v11.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+			qs: { access_token: PAGE_ACCESS_TOKEN },
+			method: "POST",
+			json: request_body,
+		},
+		(err, res, body) => {
+			console.log(body);
+			if (!err) {
+				console.log("Setup persistent menu succeeds!");
+			} else {
+				console.error("Unable to setup:" + err);
+			}
+		}
+	);
+
+	return res.send("Setup persistent menu succeeds!");
+};
 module.exports = {
 	getHomePage: getHomePage,
 	postWebhook: postWebhook,
 	getWebhook: getWebhook,
 	setupProfile: setupProfile,
+	setupPersistentMenu: setupPersistentMenu,
 };
