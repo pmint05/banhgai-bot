@@ -61,17 +61,17 @@ let handleGetStarted = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			let username = await getUserName(sender_psid);
-			let response_1 = {
+			let response1 = {
 				text: `Chào ${username} đã đến với page của mìnk =3`,
 			};
 
-			let response_2 = sendGetStartedTemplate();
+			let response2 = sendGetStartedTemplate();
 
 			//send text message
-			await callSendAPI(sender_psid, response_1);
+			await callSendAPI(sender_psid, response1);
 
 			//send generic template message
-			await callSendAPI(sender_psid, response_2);
+			await callSendAPI(sender_psid, response2);
 
 			resolve("done");
 		} catch (e) {
