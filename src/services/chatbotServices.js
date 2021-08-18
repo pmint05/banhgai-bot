@@ -95,17 +95,17 @@ let sendGetStartedTemplate = () => {
 							{
 								type: "postback",
 								title: "LỰA CHỌN 1",
-								payload: "CHOICE_1",
+								payload: "CHOICE_ONE",
 							},
 							{
 								type: "postback",
 								title: "LỰA CHỌN 2",
-								payload: "CHOICE_2",
+								payload: "CHOICE_TWO",
 							},
 							{
 								type: "postback",
 								title: "LỰA CHỌN 3",
-								payload: "CHOICE_3",
+								payload: "CHOICE_THREE",
 							},
 						],
 					},
