@@ -71,6 +71,7 @@ let handleGetStarted = (sender_psid) => {
 			await callSendAPI(sender_psid, response);
 
 			//send generic template message
+			await sendGetStartedTemplate();
 
 			resolve("done");
 		} catch (e) {
