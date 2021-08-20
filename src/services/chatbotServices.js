@@ -203,28 +203,6 @@ let getChoiceOneTemplate = () => {
 							},
 						],
 					},
-					{
-						title: "Xin chào bạn đã đến với page của mình!",
-						subtitle: "Mời bạn chọn",
-						image_url: IMAGE_GET_STARTED,
-						buttons: [
-							{
-								type: "postback",
-								title: "LỰA CHỌN 1",
-								payload: "CHOICE_ONE",
-							},
-							{
-								type: "postback",
-								title: "LỰA CHỌN 2",
-								payload: "CHOICE_TWO",
-							},
-							{
-								type: "postback",
-								title: "LỰA CHỌN 3",
-								payload: "CHOICE_THREE",
-							},
-						],
-					},
 				],
 			},
 		},
