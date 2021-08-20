@@ -65,7 +65,7 @@ let handleGetStarted = (sender_psid) => {
 				text: `Chào ${username} đã đến với page của mìnk =3`,
 			};
 
-			let response2 = sendGetStartedTemplate();
+			let response2 = getStartTemplate();
 
 			//send text message
 			await callSendAPI(sender_psid, response1);
@@ -80,7 +80,7 @@ let handleGetStarted = (sender_psid) => {
 	});
 };
 
-let sendGetStartedTemplate = () => {
+let getStartTemplate = () => {
 	let response = {
 		attachment: {
 			type: "template",
@@ -116,6 +116,123 @@ let sendGetStartedTemplate = () => {
 	return response;
 };
 
+let handleSendChoiceOne = (sender_psid) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			let response1 = getChoiceOneTemplate();
+
+			//send text message
+			await callSendAPI(sender_psid, response1);
+
+			resolve("done");
+		} catch (e) {
+			reject(e);
+		}
+	});
+};
+let getChoiceOneTemplate = () => {
+	let response = {
+		attachment: {
+			type: "template",
+			payload: {
+				template_type: "generic",
+				elements: [
+					{
+						title: "Choice One",
+						subtitle: "This is choice one!",
+						image_url: IMAGE_GET_STARTED,
+						buttons: [
+							{
+								type: "postback",
+								title: "LỰA CHỌN 1.1",
+								payload: "CHOICE_ONE_ONE",
+							},
+							{
+								type: "postback",
+								title: "LỰA CHỌN 1.2",
+								payload: "CHOICE_ONE_TWO",
+							},
+							{
+								type: "postback",
+								title: "LỰA CHỌN 1.3",
+								payload: "CHOICE_ONE_THREE",
+							},
+						],
+					},
+					{
+						title: "Choice Two",
+						subtitle: "This is choice two!",
+						image_url: IMAGE_GET_STARTED,
+						buttons: [
+							{
+								type: "postback",
+								title: "LỰA CHỌN 2.1",
+								payload: "CHOICE_TWO_ONE",
+							},
+							{
+								type: "postback",
+								title: "LỰA CHỌN 2.2",
+								payload: "CHOICE_TWO_TWO",
+							},
+							{
+								type: "postback",
+								title: "LỰA CHỌN 2.3",
+								payload: "CHOICE_TWO_THREE",
+							},
+						],
+					},
+					{
+						title: "Xin chào bạn đã đến với page của mình!",
+						subtitle: "Mời bạn chọn",
+						image_url: IMAGE_GET_STARTED,
+						buttons: [
+							{
+								type: "postback",
+								title: "LỰA CHỌN 3.1",
+								payload: "CHOICE_THREE_ONE",
+							},
+							{
+								type: "postback",
+								title: "LỰA CHỌN 3.2",
+								payload: "CHOICE_THREE_TWO",
+							},
+							{
+								type: "postback",
+								title: "LỰA CHỌN 3.3",
+								payload: "CHOICE_THREE_THREE",
+							},
+						],
+					},
+					{
+						title: "Xin chào bạn đã đến với page của mình!",
+						subtitle: "Mời bạn chọn",
+						image_url: IMAGE_GET_STARTED,
+						buttons: [
+							{
+								type: "postback",
+								title: "LỰA CHỌN 1",
+								payload: "CHOICE_ONE",
+							},
+							{
+								type: "postback",
+								title: "LỰA CHỌN 2",
+								payload: "CHOICE_TWO",
+							},
+							{
+								type: "postback",
+								title: "LỰA CHỌN 3",
+								payload: "CHOICE_THREE",
+							},
+						],
+					},
+				],
+			},
+		},
+	};
+	return response;
+};
+
 module.exports = {
 	handleGetStarted: handleGetStarted,
+	handleSendChoiceOne: handleSendChoiceOne,
 };

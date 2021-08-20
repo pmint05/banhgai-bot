@@ -130,6 +130,9 @@ async function handlePostback(sender_psid, received_postback) {
 		case "GET_STARTED":
 			await chatbotServices.handleGetStarted(sender_psid);
 			break;
+		case "CHOICE_ONE":
+			await chatbotServices.handleSendChoiceOne(sender_psid);
+
 		default:
 			response = { text: `Oops, Xin lỗi tôi không hiểu ${payload}` };
 	}
@@ -206,7 +209,7 @@ let setupPersistentMenu = async (req, res) => {
 				call_to_actions: [
 					{
 						type: "postback",
-						title: "Khởi đỘng lại bot",
+						title: "Khởi động lại bot",
 						payload: "RESTART_CHATBOT",
 					},
 					// {
