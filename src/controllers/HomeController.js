@@ -143,12 +143,15 @@ async function handlePostback(sender_psid, received_postback) {
 		case "BGIO_DETAILS":
 			await chatbotServices.handleSendBgioDetails(sender_psid);
 			break;
-		// case "BROM_DETAILS":
-		// 	await chatbotServices.handleSendBromDetails(sender_psid);
-		// case "BKHOAI_DETAILS":
-		// 	await chatbotServices.handleSendBkhoaiDetails(sender_psid);
-		// case "BTRO_DETAILS":
-		// 	await chatbotServices.handleSendBtroDetails(sender_psid);
+		case "BROM_DETAILS":
+			await chatbotServices.handleSendBromDetails(sender_psid);
+			break;
+		case "BKHOAI_DETAILS":
+			await chatbotServices.handleSendBkhoaiDetails(sender_psid);
+			break;
+		case "BTRO_DETAILS":
+			await chatbotServices.handleSendBtroDetails(sender_psid);
+			break;
 		default:
 			response = { text: `Oops, Xin lỗi tôi không hiểu ${payload}` };
 	}

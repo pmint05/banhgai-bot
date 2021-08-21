@@ -283,7 +283,7 @@ let handleSendBgaiDetails = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			let response = {
-				text: "▶ Bánh gai là một loại bánh ngọt truyền thống của Việt Nam, bắt nguồn vùng Đồng bằng Bắc bộ ở Việt Nam. Bánh có dạng hình vuông, màu đen màu của lá Gai, mùi thơm đặc trưng của đỗ xanh và gạo nếp.\n▶ Thành phần:\n• Vỏ bánh: Bột gạo nếp, lá cây Gai, đường, vừng.\n• Nhân bánh: Đỗ xanh, cùi dừa nạo nhỏ, đường.\n▶ Hạn sử dụng: 5-7 ngày ở nhiệt độ phòng",
+				text: "▷ Bánh gai là một loại bánh ngọt truyền thống của Việt Nam, bắt nguồn vùng Đồng bằng Bắc bộ ở Việt Nam. Bánh có dạng hình vuông, màu đen màu của lá Gai, mùi thơm đặc trưng của đỗ xanh và gạo nếp.\n▷ Thành phần:\n• Vỏ bánh: Bột gạo nếp, lá cây Gai, đường, vừng.\n• Nhân bánh: Đỗ xanh, cùi dừa nạo nhỏ, đường.\n▷ Hạn sử dụng: 5-7 ngày ở nhiệt độ phòng",
 			};
 
 			//send generic template message
@@ -299,7 +299,7 @@ let handleSendBgioDetails = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			let response = {
-				text: "▶ Thành phần:\n• Vỏ bánh: Bột gạo tẻ.\n• Nhân bánh: Thịt băm, mộc nhĩ, hành khô.\n▶ Hạn sử dụng: Dùng trong ngày.",
+				text: "▷ Thành phần:\n• Vỏ bánh: Bột gạo tẻ.\n• Nhân bánh: Thịt băm, mộc nhĩ, hành khô.\n▷ Hạn sử dụng: Dùng trong ngày.",
 			};
 
 			//send generic template message
@@ -315,7 +315,39 @@ let handleSendBromDetails = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			let response = {
-				text: "▶ Bánh rợm của người Tày là thứ bánh vô cùng phổ biến, mộc mạc mà để lại biết bao thương nhớ. Ngày tết, món bánh rợm là biểu tượng của sự no đủ và ấm êm.\n▶ Thành phần:\n• Vỏ bánh: Bột gạo tẻ.\n• Nhân bánh: Thịt băm, mộc nhĩ, hành khô.\n▶ Hạn sử dụng: Dùng trong ngày.",
+				text: "▷ Bánh rợm của người Tày là thứ bánh vô cùng phổ biến, mộc mạc mà để lại biết bao thương nhớ. Ngày tết, món bánh rợm là biểu tượng của sự no đủ và ấm êm.\n▷ Thành phần:\n• Vỏ bánh: Bột gạo nếp.\n• Nhân bánh: Đỗ xanh, hạt tiêu.\n▷ Hạn sử dụng: Dùng trong ngày.",
+			};
+
+			//send generic template message
+			await callSendAPI(sender_psid, response);
+
+			resolve("done");
+		} catch (e) {
+			reject(e);
+		}
+	});
+};
+let handleSendBkhoaiDetails = (sender_psid) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			let response = {
+				text: "▷ Bánh khoai sọ là một đặc sản Hưng Yên được khá nhiều người yêu thích. Với lớp vỏ giòn và mát từ khoai sọ, thêm vị thơm và bùi của nhân đậu xanh khiến cho những chiếc bánh khoai sọ càng được yêu thích hơn và được sử dụng cho bữa sáng.\n▷ Thành phần:\n• Vỏ bánh: Khoai sọ, bột gạo tẻ.\n• Nhân bánh: Đỗ xanh, thịt mỡ, hạt tiêu.\n▷ Hạn sử dụng: Dùng trong ngày.",
+			};
+
+			//send generic template message
+			await callSendAPI(sender_psid, response);
+
+			resolve("done");
+		} catch (e) {
+			reject(e);
+		}
+	});
+};
+let handleSendBtroDetails = (sender_psid) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			let response = {
+				text: "▷ Bánh gio, bánh tro, bánh ú tro hay bánh nẳng là một loại bánh được làm với thành phần chính là gạo nếp ngâm qua nước tro (từ tro than lá cây, nhất là lá tre) và gói lá đem luộc chín trong nồi. Bánh gio có xuất xứ từ Quảng Đông, Trung Quốc và có từ thời nhà Minh.\n▷ Thành phần:\n• Phần bánh: Bột gạo nếp, nước gio.\n• Nước chấm: Mật.\n▷ Hạn sử dụng: Dùng trong ngày.",
 			};
 
 			//send generic template message
@@ -334,6 +366,6 @@ module.exports = {
 	handleSendBgaiDetails: handleSendBgaiDetails,
 	handleSendBgioDetails: handleSendBgioDetails,
 	handleSendBromDetails: handleSendBromDetails,
-	// handleSendBkhoaiDetails: handleSendBkhoaiDetails,
-	// handleSendBtroDetails: handleSendBtroDetails,
+	handleSendBkhoaiDetails: handleSendBkhoaiDetails,
+	handleSendBtroDetails: handleSendBtroDetails,
 };
