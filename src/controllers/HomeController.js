@@ -131,7 +131,7 @@ async function handlePostback(sender_psid, received_postback) {
 			await chatbotServices.handleGetStarted(sender_psid);
 			break;
 		case "MENU":
-			await chatbotServices.handleSendChoiceOne(sender_psid);
+			await chatbotServices.handleSendMenu(sender_psid);
 
 		default:
 			response = { text: `Oops, Xin lỗi tôi không hiểu ${payload}` };
