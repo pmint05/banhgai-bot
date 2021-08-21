@@ -197,7 +197,7 @@ let getMenuTemplate = () => {
 							{
 								type: "postback",
 								title: "THÔNG TIN CHI TIẾT",
-								payload: "BGAI_INFO",
+								payload: "BGAI_DETAILS",
 							},
 						],
 					},
@@ -215,7 +215,7 @@ let getMenuTemplate = () => {
 							{
 								type: "postback",
 								title: "THÔNG TIN CHI TIẾT",
-								payload: "BGIO_INFO",
+								payload: "BGIO_DETAILS",
 							},
 						],
 					},
@@ -233,7 +233,7 @@ let getMenuTemplate = () => {
 							{
 								type: "postback",
 								title: "THÔNG TIN CHI TIẾT",
-								payload: "BROM_INFO",
+								payload: "BROM_DETAILS",
 							},
 						],
 					},
@@ -251,7 +251,7 @@ let getMenuTemplate = () => {
 							{
 								type: "postback",
 								title: "THÔNG TIN CHI TIẾT",
-								payload: "BKHOAI_INFO",
+								payload: "BKHOAI_DETAILS",
 							},
 						],
 					},
@@ -269,7 +269,7 @@ let getMenuTemplate = () => {
 							{
 								type: "postback",
 								title: "THÔNG TIN CHI TIẾT",
-								payload: "BTRO_INFO",
+								payload: "BTRO_DETAILS",
 							},
 						],
 					},
@@ -279,8 +279,45 @@ let getMenuTemplate = () => {
 	};
 	return response;
 };
+let handleSendBgaiDetails = (sender_psid) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			let response = {
+				text: "Bánh gai là một loại bánh ngọt truyền thống của Việt Nam, bắt nguồn vùng Đồng bằng Bắc bộ ở Việt Nam. Bánh có dạng hình vuông, màu đen màu của lá Gai, mùi thơm đặc trưng của đỗ xanh và gạo nếp.\nThành phần:\n• Vỏ bánh: Bột gạo nếp, lá cây Gai, đường, vừng.\n• Nhân bánh: Đỗ xanh, cùi dừa nạo nhỏ, đường.\n• Hạn sử dụng: 5-7 ngày ở nhiệt độ phòng",
+			};
+
+			//send generic template message
+			await callSendAPI(sender_psid, response);
+
+			resolve("done");
+		} catch (e) {
+			reject(e);
+		}
+	});
+};
+let handleSendBgioDetails = (sender_psid) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			let response = {
+				text: "Thành phần:\n• Vỏ bánh: Bột gạo tẻ.\n• Nhân bánh: Thịt băm, mộc nhĩ, hành khô.\n• Dùng trong ngày.",
+			};
+
+			//send generic template message
+			await callSendAPI(sender_psid, response);
+
+			resolve("done");
+		} catch (e) {
+			reject(e);
+		}
+	});
+};
 
 module.exports = {
 	handleGetStarted: handleGetStarted,
 	handleSendMenu: handleSendMenu,
+	handleSendBgaiDetails: handleSendBgaiDetails,
+	handleSendBgioDetails: handleSendBgioDetails,
+	// handleSendBromDetails: handleSendBromDetails,
+	// handleSendBkhoaiDetails: handleSendBkhoaiDetails,
+	// handleSendBtroDetails: handleSendBtroDetails,
 };
