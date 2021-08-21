@@ -1,5 +1,5 @@
 {
-	"name": "facebook-chatbot-pmint05",
+	"name": "banhgai-bot",
 	"version": "1.0.0",
 	"description": "facebook chatbot by pmint05",
 	"main": "server.js",
@@ -10,7 +10,8 @@
 	"keywords": [
 		"chatbot",
 		"pmint05",
-		"facebook"
+		"facebook",
+		"banhgai"
 	],
 	"author": "pmint05",
 	"license": "ISC",
