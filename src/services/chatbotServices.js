@@ -134,7 +134,7 @@ let getStartTemplate = (username) => {
 				template_type: "generic",
 				elements: [
 					{
-						title: `Xin chào ${username} đã đến với BÁNH GAI BÀ THÚY!🥰`,
+						title: `Chào mừng ${username} đã đến với BÁNH GAI BÀ THÚY!🥰`,
 						subtitle: "Mời bạn chọn",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
@@ -186,7 +186,7 @@ let getMenuTemplate = () => {
 					{
 						title: "Bánh Gai",
 						subtitle:
-							"Một loại bánh ngọt truyền thống của Việt Nam. Bánh có dạng hình vuông, màu đen màu của Lá Gai, mùi thơm đặc trưng của đỗ xanh và gạo nếp.",
+							"Một loại bánh ngọt truyền thống của Việt Nam. Bánh có màu đen màu của lá Gai, mùi thơm đặc trưng của đỗ xanh và gạo nếp.",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
@@ -203,7 +203,8 @@ let getMenuTemplate = () => {
 					},
 					{
 						title: "Bánh Giò",
-						subtitle: "Một loại bánh mặn được làm bằng bột gạo tẻ.",
+						subtitle:
+							"Bánh được làm bằng bột gạo tẻ, nhân có vị mặn với thịt lọn, mộc nhĩ và hành khô.",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
@@ -239,7 +240,7 @@ let getMenuTemplate = () => {
 					{
 						title: "Bánh Khoai",
 						subtitle:
-							"Một đặc sản Hưng Yên. Có lớp vỏ giòn và mát từ khoai sọ, thêm vị thơm và bùi của nhân đậu xanh.",
+							"Đặc sản Hưng Yên. Có lớp vỏ giòn và mát từ khoai sọ, thêm vị thơm và bùi của nhân đậu xanh.",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
