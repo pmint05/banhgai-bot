@@ -173,9 +173,7 @@ let setupProfile = async (req, res) => {
 	// Construct the message body
 	let request_body = {
 		get_started: { payload: "GET_STARTED" },
-		whitelisted_domains: [
-			"https://facebook-chatbot-pmint05.herokuapp.com/",
-		],
+		whitelisted_domains: ["https://banhgaibathuy.herokuapp.com/"],
 	};
 
 	// Send the HTTP request to the Messenger Platform
