@@ -113,7 +113,8 @@ let getUserName = (sender_psid) => {
 let handleGetStarted = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			let response = getStartTemplate(sender_psid);
+			let username = await getUserName(sender_psid);
+			let response = getStartTemplate(username);
 
 			//send generic template message
 			await callSendAPI(sender_psid, response);
@@ -125,8 +126,7 @@ let handleGetStarted = (sender_psid) => {
 	});
 };
 
-let getStartTemplate = (sender_psid) => {
-	let username = await getUserName(sender_psid);
+let getStartTemplate = (username) => {
 	let response = {
 		attachment: {
 			type: "template",
