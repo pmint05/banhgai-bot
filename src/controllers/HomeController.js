@@ -132,13 +132,17 @@ async function handlePostback(sender_psid, received_postback) {
 			break;
 		case "MENU":
 			await chatbotServices.handleSendMenu(sender_psid);
+			break;
 		case "RESERVE":
 		case "INFOMATION":
 			await chatbotServices.handleSendInfo(sender_psid);
+			break;
 		case "BGAI_DETAILS":
 			await chatbotServices.handleSendBgaiDetails(sender_psid);
+			break;
 		case "BGIO_DETAILS":
 			await chatbotServices.handleSendBgioDetails(sender_psid);
+			break;
 		// case "BROM_DETAILS":
 		// 	await chatbotServices.handleSendBromDetails(sender_psid);
 		// case "BKHOAI_DETAILS":
