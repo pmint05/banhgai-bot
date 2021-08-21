@@ -186,7 +186,7 @@ let getMenuTemplate = () => {
 					{
 						title: "Bánh Gai",
 						subtitle:
-							"Một loại bánh ngọt truyền thống của Việt Nam. Bánh có màu đen màu của lá Gai, mùi thơm đặc trưng của đỗ xanh và gạo nếp.",
+							"4k/cái\nMột loại bánh ngọt truyền thống của Việt Nam. Bánh có màu đen màu của lá Gai, mùi thơm đặc trưng của đỗ xanh và gạo nếp.",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
@@ -204,7 +204,7 @@ let getMenuTemplate = () => {
 					{
 						title: "Bánh Giò",
 						subtitle:
-							"Bánh được làm bằng bột gạo tẻ, nhân có vị mặn với thịt lọn, mộc nhĩ và hành khô.",
+							"5k/cái\nBánh được làm bằng bột gạo tẻ, nhân có vị mặn với thịt lọn, mộc nhĩ và hành khô.",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
@@ -222,7 +222,7 @@ let getMenuTemplate = () => {
 					{
 						title: "Bánh Rợm",
 						subtitle:
-							"Một loại bánh truyền thống của người Tày - biểu tượng của sự no đủ và ấm êm.",
+							"5k/cái\nMột loại bánh truyền thống của người Tày - biểu tượng của sự no đủ và ấm êm.",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
@@ -240,7 +240,7 @@ let getMenuTemplate = () => {
 					{
 						title: "Bánh Khoai",
 						subtitle:
-							"Đặc sản Hưng Yên. Có lớp vỏ giòn và mát từ khoai sọ, thêm vị thơm và bùi của nhân đậu xanh.",
+							"6k/cái\nĐặc sản Hưng Yên. Có lớp vỏ giòn và mát từ khoai sọ, thêm vị thơm và bùi của nhân đậu xanh.",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
@@ -258,7 +258,7 @@ let getMenuTemplate = () => {
 					{
 						title: "Bánh Gio (Tro)",
 						subtitle:
-							"Bánh gio, bánh tro, bánh ú tro hay bánh nẳng là một loại bánh được làm với thành phần chính là gạo nếp ngâm qua nước tro",
+							"5k/cái\nBánh gio, bánh tro, bánh ú tro hay bánh nẳng là một loại bánh được làm với thành phần chính là gạo nếp ngâm qua nước tro",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
