@@ -283,7 +283,7 @@ let handleSendBgaiDetails = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			let response = {
-				text: "Bánh gai là một loại bánh ngọt truyền thống của Việt Nam, bắt nguồn vùng Đồng bằng Bắc bộ ở Việt Nam. Bánh có dạng hình vuông, màu đen màu của lá Gai, mùi thơm đặc trưng của đỗ xanh và gạo nếp.\nThành phần:\n• Vỏ bánh: Bột gạo nếp, lá cây Gai, đường, vừng.\n• Nhân bánh: Đỗ xanh, cùi dừa nạo nhỏ, đường.\n• Hạn sử dụng: 5-7 ngày ở nhiệt độ phòng",
+				text: "▶ Bánh gai là một loại bánh ngọt truyền thống của Việt Nam, bắt nguồn vùng Đồng bằng Bắc bộ ở Việt Nam. Bánh có dạng hình vuông, màu đen màu của lá Gai, mùi thơm đặc trưng của đỗ xanh và gạo nếp.\n▶ Thành phần:\n• Vỏ bánh: Bột gạo nếp, lá cây Gai, đường, vừng.\n• Nhân bánh: Đỗ xanh, cùi dừa nạo nhỏ, đường.\n▶ Hạn sử dụng: 5-7 ngày ở nhiệt độ phòng",
 			};
 
 			//send generic template message
@@ -299,7 +299,23 @@ let handleSendBgioDetails = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			let response = {
-				text: "Thành phần:\n• Vỏ bánh: Bột gạo tẻ.\n• Nhân bánh: Thịt băm, mộc nhĩ, hành khô.\n• Dùng trong ngày.",
+				text: "▶ Thành phần:\n• Vỏ bánh: Bột gạo tẻ.\n• Nhân bánh: Thịt băm, mộc nhĩ, hành khô.\n▶ Hạn sử dụng: Dùng trong ngày.",
+			};
+
+			//send generic template message
+			await callSendAPI(sender_psid, response);
+
+			resolve("done");
+		} catch (e) {
+			reject(e);
+		}
+	});
+};
+let handleSendBromDetails = (sender_psid) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			let response = {
+				text: "▶ Bánh rợm của người Tày là thứ bánh vô cùng phổ biến, mộc mạc mà để lại biết bao thương nhớ. Ngày tết, món bánh rợm là biểu tượng của sự no đủ và ấm êm.\n▶ Thành phần:\n• Vỏ bánh: Bột gạo tẻ.\n• Nhân bánh: Thịt băm, mộc nhĩ, hành khô.\n▶ Hạn sử dụng: Dùng trong ngày.",
 			};
 
 			//send generic template message
@@ -317,7 +333,7 @@ module.exports = {
 	handleSendMenu: handleSendMenu,
 	handleSendBgaiDetails: handleSendBgaiDetails,
 	handleSendBgioDetails: handleSendBgioDetails,
-	// handleSendBromDetails: handleSendBromDetails,
-	// handleSendBkhoaiDetails: handleSendBkhoaiDetails,
-	// handleSendBtroDetails: handleSendBtroDetails,
+	handleSendBromDetails: handleSendBromDetails,
+	handleSendBkhoaiDetails: handleSendBkhoaiDetails,
+	handleSendBtroDetails: handleSendBtroDetails,
 };
