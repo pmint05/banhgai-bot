@@ -113,18 +113,10 @@ let getUserName = (sender_psid) => {
 let handleGetStarted = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			let username = await getUserName(sender_psid);
-			let response1 = {
-				text: `Chào ${username} đã đến với page của mìnk =3`,
-			};
-
-			let response2 = getStartTemplate();
-
-			//send text message
-			await callSendAPI(sender_psid, response1);
+			let response = getStartTemplate(sender_psid);
 
 			//send generic template message
-			await callSendAPI(sender_psid, response2);
+			await callSendAPI(sender_psid, response);
 
 			resolve("done");
 		} catch (e) {
@@ -133,7 +125,8 @@ let handleGetStarted = (sender_psid) => {
 	});
 };
 
-let getStartTemplate = () => {
+let getStartTemplate = (sender_psid) => {
+	let username = await getUserName(sender_psid);
 	let response = {
 		attachment: {
 			type: "template",
@@ -141,24 +134,24 @@ let getStartTemplate = () => {
 				template_type: "generic",
 				elements: [
 					{
-						title: "Xin chào bạn đã đến với page của mình!",
+						title: `Xin chào ${username} đã đến với BÁNH GAI BÀ THÚY!🥰`,
 						subtitle: "Mời bạn chọn",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
 								type: "postback",
-								title: "LỰA CHỌN 1",
-								payload: "CHOICE_ONE",
+								title: "MENU",
+								payload: "MENU",
 							},
 							{
 								type: "postback",
-								title: "LỰA CHỌN 2",
-								payload: "CHOICE_TWO",
+								title: "ĐẶT BÁNH",
+								payload: "RESERVE",
 							},
 							{
 								type: "postback",
-								title: "LỰA CHỌN 3",
-								payload: "CHOICE_THREE",
+								title: "THÔNG TIN",
+								payload: "INFOMATION",
 							},
 						],
 					},
@@ -169,10 +162,10 @@ let getStartTemplate = () => {
 	return response;
 };
 
-let handleSendChoiceOne = (sender_psid) => {
+let handleSendMenu = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			let response1 = getChoiceOneTemplate();
+			let response1 = getMenuTemplate();
 
 			//send text message
 			await callSendAPI(sender_psid, response1);
@@ -183,7 +176,7 @@ let handleSendChoiceOne = (sender_psid) => {
 		}
 	});
 };
-let getChoiceOneTemplate = () => {
+let getMenuTemplate = () => {
 	let response = {
 		attachment: {
 			type: "template",
@@ -191,68 +184,91 @@ let getChoiceOneTemplate = () => {
 				template_type: "generic",
 				elements: [
 					{
-						title: "Choice One",
-						subtitle: "This is choice one!",
+						title: "Bánh Gai",
+						subtitle:
+							"Một loại bánh ngọt truyền thống của Việt Nam. Bánh có dạng hình vuông, màu đen màu của Lá Gai, mùi thơm đặc trưng của đỗ xanh và gạo nếp.",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
 								type: "postback",
-								title: "LỰA CHỌN 1.1",
-								payload: "CHOICE_ONE_ONE",
+								title: "ĐẶT NGAY",
+								payload: "RESERVE_NOW",
 							},
 							{
 								type: "postback",
-								title: "LỰA CHỌN 1.2",
-								payload: "CHOICE_ONE_TWO",
-							},
-							{
-								type: "postback",
-								title: "LỰA CHỌN 1.3",
-								payload: "CHOICE_ONE_THREE",
+								title: "THÔNG TIN CHI TIẾT",
+								payload: "BGAI_INFO",
 							},
 						],
 					},
 					{
-						title: "Choice Two",
-						subtitle: "This is choice two!",
+						title: "Bánh Giò",
+						subtitle: "Một loại bánh mặn được làm bằng bột gạo tẻ.",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
 								type: "postback",
-								title: "LỰA CHỌN 2.1",
-								payload: "CHOICE_TWO_ONE",
+								title: "ĐẶT NGAY",
+								payload: "RESERVE_NOW",
 							},
 							{
 								type: "postback",
-								title: "LỰA CHỌN 2.2",
-								payload: "CHOICE_TWO_TWO",
-							},
-							{
-								type: "postback",
-								title: "LỰA CHỌN 2.3",
-								payload: "CHOICE_TWO_THREE",
+								title: "THÔNG TIN CHI TIẾT",
+								payload: "BGIO_INFO",
 							},
 						],
 					},
 					{
-						title: "Xin chào bạn đã đến với page của mình!",
-						subtitle: "Mời bạn chọn",
+						title: "Bánh Rợm",
+						subtitle:
+							"Một loại bánh truyền thống của người Tày - biểu tượng của sự no đủ và ấm êm.",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
 								type: "postback",
-								title: "LỰA CHỌN 3.1",
-								payload: "CHOICE_THREE_ONE",
+								title: "ĐẶT NGAY",
+								payload: "RESERVE_NOW",
 							},
 							{
 								type: "postback",
-								title: "LỰA CHỌN 3.2",
-								payload: "CHOICE_THREE_TWO",
+								title: "THÔNG TIN CHI TIẾT",
+								payload: "BROM_INFO",
+							},
+						],
+					},
+					{
+						title: "Bánh Khoai",
+						subtitle:
+							"Một đặc sản Hưng Yên. Có lớp vỏ giòn và mát từ khoai sọ, thêm vị thơm và bùi của nhân đậu xanh.",
+						image_url: IMAGE_GET_STARTED,
+						buttons: [
+							{
+								type: "postback",
+								title: "ĐẶT NGAY",
+								payload: "RESERVE_NOW",
 							},
 							{
 								type: "postback",
-								title: "LỰA CHỌN 3.3",
-								payload: "CHOICE_THREE_THREE",
+								title: "THÔNG TIN CHI TIẾT",
+								payload: "BKHOAI_INFO",
+							},
+						],
+					},
+					{
+						title: "Bánh Gio (Tro)",
+						subtitle:
+							"Bánh gio, bánh tro, bánh ú tro hay bánh nẳng là một loại bánh được làm với thành phần chính là gạo nếp ngâm qua nước tro",
+						image_url: IMAGE_GET_STARTED,
+						buttons: [
+							{
+								type: "postback",
+								title: "ĐẶT NGAY",
+								payload: "RESERVE_NOW",
+							},
+							{
+								type: "postback",
+								title: "THÔNG TIN CHI TIẾT",
+								payload: "BTRO_INFO",
 							},
 						],
 					},
@@ -265,5 +281,5 @@ let getChoiceOneTemplate = () => {
 
 module.exports = {
 	handleGetStarted: handleGetStarted,
-	handleSendChoiceOne: handleSendChoiceOne,
+	handleSendMenu: handleSendMenu,
 };

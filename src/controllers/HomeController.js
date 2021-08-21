@@ -130,7 +130,7 @@ async function handlePostback(sender_psid, received_postback) {
 		case "GET_STARTED":
 			await chatbotServices.handleGetStarted(sender_psid);
 			break;
-		case "CHOICE_ONE":
+		case "MENU":
 			await chatbotServices.handleSendChoiceOne(sender_psid);
 
 		default:
@@ -206,16 +206,16 @@ let setupPersistentMenu = async (req, res) => {
 				composer_input_disabled: false,
 				call_to_actions: [
 					{
+						type: "web_url",
+						title: "Trang cá nhân",
+						url: "fb.com/lamthuy.63/",
+						webview_height_ratio: "full",
+					},
+					{
 						type: "postback",
 						title: "Khởi động lại bot",
 						payload: "RESTART_CHATBOT",
 					},
-					// {
-					// 	type: "web_url",
-					// 	title: "Shop now",
-					// 	url: "https://www.originalcoastclothing.com/",
-					// 	webview_height_ratio: "full",
-					// },
 				],
 			},
 		],
