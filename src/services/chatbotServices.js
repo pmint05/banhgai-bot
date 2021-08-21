@@ -334,6 +334,6 @@ module.exports = {
 	handleSendBgaiDetails: handleSendBgaiDetails,
 	handleSendBgioDetails: handleSendBgioDetails,
 	handleSendBromDetails: handleSendBromDetails,
-	handleSendBkhoaiDetails: handleSendBkhoaiDetails,
-	handleSendBtroDetails: handleSendBtroDetails,
+	// handleSendBkhoaiDetails: handleSendBkhoaiDetails,
+	// handleSendBtroDetails: handleSendBtroDetails,
 };
