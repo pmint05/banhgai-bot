@@ -27,156 +27,151 @@ window.extAsyncInit = function () {
 	);
 };
 //validate inputs
-function validateInputFields() {
-	const EMAIL_REG =
-		/[a-zA-Z][a-zA-Z0-9_\.]{1,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}/g;
-	let email = $("#email");
-	let phoneNumber = $("#phoneNumber");
+// function validateInputFields() {
+// 	let phoneNumber = $("#phoneNumber");
 
-	if (!email.val().match(EMAIL_REG)) {
-		email.addClass("is-invalid");
-		return true;
-	} else {
-		email.removeClass("is-invalid");
-	}
+// 	if (phoneNumber.val() === "") {
+// 		phoneNumber.addClass("is-invalid");
+// 		return true;
+// 	} else {
+// 		phoneNumber.removeClass("is-invalid");
+// 	}
 
-	if (phoneNumber.val() === "") {
-		phoneNumber.addClass("is-invalid");
-		return true;
-	} else {
-		phoneNumber.removeClass("is-invalid");
-	}
-
-	return false;
-}
+// 	return false;
+// }
 
 function handleClickReserveButton() {
 	$("#btnReserveTable").on("click", function (e) {
-		let check = validateInputFields();
+		// let check = validateInputFields();
 		let data = {
 			psid: $("#psid").val(),
-			customerName: $("#customerName").val(),
-			email: $("#email").val(),
-			phoneNumber: $("#phoneNumber").val(),
+			fullName: $("#full-name").val(),
+			phoneNumber: $("#phone-number").val(),
+			address: `${$("#house-number").val()}, ${$("#ward").val()}, ${$(
+				"#district"
+			).val()}, ${$("#city").val()}`,
+			note: $("#note").val(),
+			typeOfCake: $("#type").val(),
+			number: $("#number").val(),
 		};
 
-		if (!check) {
-			//close webview
-			MessengerExtensions.requestCloseBrowser(
-				function success() {
-					// webview closed
-				},
-				function error(err) {
-					// an error occurred
-					console.log(err);
-				}
-			);
+		// if (!check) {
+		//close webview
+		MessengerExtensions.requestCloseBrowser(
+			function success() {
+				// webview closed
+			},
+			function error(err) {
+				// an error occurred
+				console.log(err);
+			}
+		);
 
-			//send data to node.js server
-			$.ajax({
-				url: `${window.location.origin}/reserve-info`,
-				method: "POST",
-				data: data,
-				success: function (data) {
-					console.log(data);
-				},
-				error: function (error) {
-					console.log(error);
-				},
-			});
-		}
+		//send data to node.js server
+		$.ajax({
+			url: `${window.location.origin}/reserve-info`,
+			method: "POST",
+			data: data,
+			success: function (data) {
+				console.log(data);
+			},
+			error: function (error) {
+				console.log(error);
+			},
+		});
+		// }
 	});
 }
 
-// var districts = document.getElementById("district");
-// var wards = document.getElementById("ward");
-// var Parameter = {
-// 	url: "vn.json", //Đường dẫn đến file chứa dữ liệu hoặc api do backend cung cấp
-// 	method: "GET", //do backend cung cấp
-// 	responseType: "application/json", //kiểu Dữ liệu trả về do backend cung cấp
-// };
-// //gọi ajax = axios => nó trả về cho chúng ta là một promise
-// var promise = axios(Parameter);
-// //Xử lý khi request thành công
-// promise.then(function (result) {
-// 	renderCity(result.data);
-// });
+var districts = document.getElementById("district");
+var wards = document.getElementById("ward");
+var Parameter = {
+	url: "vn.json", //Đường dẫn đến file chứa dữ liệu hoặc api do backend cung cấp
+	method: "GET", //do backend cung cấp
+	responseType: "application/json", //kiểu Dữ liệu trả về do backend cung cấp
+};
+//gọi ajax = axios => nó trả về cho chúng ta là một promise
+var promise = axios(Parameter);
+//Xử lý khi request thành công
+promise.then(function (result) {
+	renderCity(result.data);
+});
 
-// function renderCity(data) {
-// 	let citis = document.getElementById("city");
-// 	for (const x of data) {
-// 		citis.options[citis.options.length] = new Option(x.Name, x.Id);
-// 	}
+function renderCity(data) {
+	let citis = document.getElementById("city");
+	for (const x of data) {
+		citis.options[citis.options.length] = new Option(x.Name, x.Id);
+	}
 
-// 	// xứ lý khi thay đổi tỉnh thành thì sẽ hiển thị ra quận huyện thuộc tỉnh thành đó
-// 	citis.onchange = function () {
-// 		district.length = 1;
-// 		ward.length = 1;
-// 		if (this.value != "") {
-// 			const result = data.filter((n) => n.Id === this.value);
+	// xứ lý khi thay đổi tỉnh thành thì sẽ hiển thị ra quận huyện thuộc tỉnh thành đó
+	citis.onchange = function () {
+		district.length = 1;
+		ward.length = 1;
+		if (this.value != "") {
+			const result = data.filter((n) => n.Id === this.value);
 
-// 			for (const k of result[0].Districts) {
-// 				district.options[district.options.length] = new Option(
-// 					k.Name,
-// 					k.Id
-// 				);
-// 			}
-// 		}
-// 	};
+			for (const k of result[0].Districts) {
+				district.options[district.options.length] = new Option(
+					k.Name,
+					k.Id
+				);
+			}
+		}
+	};
 
-// 	// xứ lý khi thay đổi quận huyện thì sẽ hiển thị ra phường xã thuộc quận huyện đó
-// 	district.onchange = function () {
-// 		ward.length = 1;
-// 		const dataCity = data.filter((n) => n.Id === citis.value);
-// 		if (this.value != "") {
-// 			const dataWards = dataCity[0].Districts.filter(
-// 				(n) => n.Id === this.value
-// 			)[0].Wards;
+	// xứ lý khi thay đổi quận huyện thì sẽ hiển thị ra phường xã thuộc quận huyện đó
+	district.onchange = function () {
+		ward.length = 1;
+		const dataCity = data.filter((n) => n.Id === citis.value);
+		if (this.value != "") {
+			const dataWards = dataCity[0].Districts.filter(
+				(n) => n.Id === this.value
+			)[0].Wards;
 
-// 			for (const w of dataWards) {
-// 				wards.options[wards.options.length] = new Option(w.Name, w.Id);
-// 			}
-// 		}
-// 	};
-// }
-// jQuery(function ($) {
-// 	// MAD-RIPPLE // (jQ+CSS)
-// 	$(document).on("mousedown", "[data-ripple]", function (e) {
-// 		var $self = $(this);
+			for (const w of dataWards) {
+				wards.options[wards.options.length] = new Option(w.Name, w.Id);
+			}
+		}
+	};
+}
+jQuery(function ($) {
+	// MAD-RIPPLE // (jQ+CSS)
+	$(document).on("mousedown", "[data-ripple]", function (e) {
+		var $self = $(this);
 
-// 		if ($self.is(".btn-disabled")) {
-// 			return;
-// 		}
-// 		if ($self.closest("[data-ripple]")) {
-// 			e.stopPropagation();
-// 		}
+		if ($self.is(".btn-disabled")) {
+			return;
+		}
+		if ($self.closest("[data-ripple]")) {
+			e.stopPropagation();
+		}
 
-// 		var initPos = $self.css("position"),
-// 			offs = $self.offset(),
-// 			x = e.pageX - offs.left,
-// 			y = e.pageY - offs.top,
-// 			dia = Math.min(this.offsetHeight, this.offsetWidth, 100), // start diameter
-// 			$ripple = $("<div/>", { class: "ripple", appendTo: $self });
+		var initPos = $self.css("position"),
+			offs = $self.offset(),
+			x = e.pageX - offs.left,
+			y = e.pageY - offs.top,
+			dia = Math.min(this.offsetHeight, this.offsetWidth, 100), // start diameter
+			$ripple = $("<div/>", { class: "ripple", appendTo: $self });
 
-// 		if (!initPos || initPos === "static") {
-// 			$self.css({ position: "relative" });
-// 		}
+		if (!initPos || initPos === "static") {
+			$self.css({ position: "relative" });
+		}
 
-// 		$("<div/>", {
-// 			class: "rippleWave",
-// 			css: {
-// 				background: $self.data("ripple"),
-// 				width: dia,
-// 				height: dia,
-// 				left: x - dia / 2,
-// 				top: y - dia / 2,
-// 			},
-// 			appendTo: $ripple,
-// 			one: {
-// 				animationend: function () {
-// 					$ripple.remove();
-// 				},
-// 			},
-// 		});
-// 	});
-// });
+		$("<div/>", {
+			class: "rippleWave",
+			css: {
+				background: $self.data("ripple"),
+				width: dia,
+				height: dia,
+				left: x - dia / 2,
+				top: y - dia / 2,
+			},
+			appendTo: $ripple,
+			one: {
+				animationend: function () {
+					$ripple.remove();
+				},
+			},
+		});
+	});
+});

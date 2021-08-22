@@ -274,19 +274,22 @@ let handleReserve = (req, res) => {
 };
 let handlePostReserve = async (req, res) => {
 	try {
-		let customerName = "";
-		if (req.body.customerName === "") {
-			customerName = "Empty";
-		} else customerName = req.body.customerName;
+		let fullName = "";
+		if (req.body.fullName === "") {
+			fullName = "Empty";
+		} else fullName = req.body.fullName;
 
 		// I demo response with sample text
 		// you can check database for customer order's status
 
 		let response1 = {
 			text: `---Thông tin khác hàng---
-            \nHọ và tên: ${customerName}
-            \nĐịa chỉ email: ${req.body.email}
+            \nHọ và tên: ${fullName}
             \nSố điện thoại: ${req.body.phoneNumber}
+            \nĐịa chỉ: ${req.body.address}
+            \nGhi chú: ${req.body.note}
+            \nLoại bánh: ${req.body.typeOfCake}
+            \nSố lượng: ${req.body.number}
             `,
 		};
 
