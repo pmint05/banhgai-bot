@@ -13,11 +13,11 @@ window.extAsyncInit = function () {
 	// the Messenger Extensions JS SDK is done loading
 
 	MessengerExtensions.getContext(
-		"AppID",
+		"1021596391986821",
 		function success(thread_context) {
 			// success
 			//set psid to input
-			$("#psid").val(thread_context.psid);
+			// $("#psid").val(thread_context.psid);
 		},
 		function error(err) {
 			// error
