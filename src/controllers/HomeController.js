@@ -230,9 +230,11 @@ let setupPersistentMenu = async (req, res) => {
 						webview_height_ratio: "full",
 					},
 					{
-						type: "postback",
+						type: "web_url",
+						url: `${process.env.URL_WEBVIEW_ORDER}`,
 						title: "Đặt bánh ngay!",
-						payload: "RESERVE",
+						webview_height_ratio: "tall",
+						messenger_extensions: true,
 					},
 					{
 						type: "postback",

@@ -90,8 +90,7 @@ jQuery(function ($) {
 		});
 	});
 });
-$(document).ready(function () {
-	$("html").on("contextmenu", function (e) {
-		return false;
-	});
-});
+
+window.extAsyncInit = function () {
+	// SDK loaded, code to follow
+};
