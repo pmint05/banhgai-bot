@@ -49,7 +49,7 @@ function handleClickReserveButton() {
 			phoneNumber: $("#phone-number").val(),
 			address: $("#address").val(),
 			note: $("#note").val(),
-			typeOfCake: $("#type").text(),
+			typeOfCake: $("#type option:selected").text(),
 			number: $("#number").val(),
 		};
 

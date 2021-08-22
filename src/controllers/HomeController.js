@@ -287,9 +287,9 @@ let handlePostReserve = async (req, res) => {
             \nHọ và tên: ${fullName}
             \nSố điện thoại: ${req.body.phoneNumber}
             \nĐịa chỉ: ${req.body.address}
-            \nGhi chú: ${req.body.note}
             \nLoại bánh: ${req.body.typeOfCake}
             \nSố lượng: ${req.body.number}
+            \nGhi chú: ${req.body.note}
             `,
 		};
 
