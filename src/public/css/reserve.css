@@ -249,6 +249,16 @@ select {
 	outline: none;
 	padding: 0.5rem;
 }
+#address.is-invalid,
+#phone-number.is-invalid,
+#number.is-invalid {
+	border-bottom: 2px solid #ffaaaa;
+}
+.input-data #address.is-invalid + .underline::before,
+.input-data #phone-number.is-invalid + .underline::before,
+.input-data #number.is-invalid + .underline::before {
+	background: #ff3333;
+}
 /* @media only screen and (max-width: 500px) {
 	.container {
 		display: flex;
@@ -408,4 +418,4 @@ select {
 		border: solid 1px #111;
 		outline: none;
 	}
-} */
+} */ ;

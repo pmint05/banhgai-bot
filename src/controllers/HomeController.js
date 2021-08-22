@@ -1,14 +1,43 @@
 require("dotenv").config();
+const { GoogleSpreadsheet } = require("google-spreadsheet");
 import request from "request";
 import chatbotServices from "../services/chatbotServices";
+import moment from "moment";
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
+const GOOGLE_SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
 
+let writeDataToGoogleSheet = async (data) => {
+	let currentDate = new Date();
+	const format = "HH:mm DD/MM/YYYY";
+	let formatedDate = moment(currentDate).format(format);
+	// Initialize the sheet - doc ID is the long id in the sheets URL
+	const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
+	// Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
+	await doc.useServiceAccountAuth({
+		client_email: GOOGLE_SERVICE_ACCOUNT_EMAIL,
+		private_key: GOOGLE_PRIVATE_KEY,
+	});
+	await doc.loadInfo(); // loads document properties and worksheets
+	const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
+
+	await sheet.addRow({
+		"Họ & Tên": data.fullName,
+		"Số Điện Thoại": data.phoneNumber,
+		"Địa Chỉ": data.address,
+		"Loại Bánh": data.typeOfCake,
+		"Số Lượng": data.number,
+		"Ghi Chú": data.note,
+		"Thời Gian": formatedDate,
+		"Tên Facebook": data.username,
+	});
+};
 //process.env.NAME_VARIABLES
 let getHomePage = (req, res) => {
 	return res.render("homepage.ejs");
 };
-
 let postWebhook = (req, res) => {
 	let body = req.body;
 
@@ -63,7 +92,6 @@ let getWebhook = (req, res) => {
 		}
 	}
 };
-
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
 	let response;
@@ -110,7 +138,6 @@ function handleMessage(sender_psid, received_message) {
 	// Send the response message
 	callSendAPI(sender_psid, response);
 }
-
 // Handles messaging_postbacks events
 async function handlePostback(sender_psid, received_postback) {
 	let response;
@@ -158,7 +185,6 @@ async function handlePostback(sender_psid, received_postback) {
 	// Send the message to acknowledge the postback
 	callSendAPI(sender_psid, response);
 }
-
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
 	// Construct the message body
@@ -274,9 +300,23 @@ let handleReserve = (req, res) => {
 };
 let handlePostReserve = async (req, res) => {
 	try {
+		let username = await chatbotServices.getUserName(req.body.psid);
+
+		//write data to google sheet
+		let data = {
+			fullName: req.body.fullName,
+			phoneNumber: req.body.phoneNumber,
+			address: req.body.address,
+			typeOfCake: req.body.typeOfCake,
+			number: req.body.number,
+			note: req.body.note,
+			username: username,
+		};
+		await writeDataToGoogleSheet(data);
+
 		let fullName = "";
 		if (req.body.fullName === "") {
-			fullName = "Empty";
+			fullName = username;
 		} else fullName = req.body.fullName;
 
 		// I demo response with sample text

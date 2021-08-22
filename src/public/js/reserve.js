@@ -27,22 +27,36 @@ window.extAsyncInit = function () {
 	);
 };
 //validate inputs
-// function validateInputFields() {
-// 	let phoneNumber = $("#phoneNumber");
+function validateInputFields() {
+	let phoneNumber = $("#phoneNumber");
+	let address = $("#address");
+	let numberOfCake = $("#number");
 
-// 	if (phoneNumber.val() === "") {
-// 		phoneNumber.addClass("is-invalid");
-// 		return true;
-// 	} else {
-// 		phoneNumber.removeClass("is-invalid");
-// 	}
+	if (phoneNumber.length < 10) {
+		phoneNumber.addClass("is-invalid");
+		return true;
+	} else {
+		phoneNumber.removeClass("is-invalid");
+	}
+	if (address.val() === "") {
+		address.addClass("is-invalid");
+		return true;
+	} else {
+		address.removeClass("is-invalid");
+	}
+	if (numberOfCake.val() === "") {
+		numberOfCake.addClass("is-invalid");
+		return true;
+	} else {
+		numberOfCake.removeClass("is-invalid");
+	}
 
-// 	return false;
-// }
+	return false;
+}
 
 function handleClickReserveButton() {
 	$("#btnReserve").on("click", function (e) {
-		// let check = validateInputFields();
+		let check = validateInputFields();
 		let data = {
 			psid: $("#psid").val(),
 			fullName: $("#full-name").val(),
@@ -53,31 +67,31 @@ function handleClickReserveButton() {
 			number: $("#number").val(),
 		};
 
-		// if (!check) {
-		//close webview
-		MessengerExtensions.requestCloseBrowser(
-			function success() {
-				// webview closed
-			},
-			function error(err) {
-				// an error occurred
-				console.log(err);
-			}
-		);
+		if (!check) {
+			//close webview
+			MessengerExtensions.requestCloseBrowser(
+				function success() {
+					// webview closed
+				},
+				function error(err) {
+					// an error occurred
+					console.log(err);
+				}
+			);
 
-		//send data to node.js server
-		$.ajax({
-			url: `${window.location.origin}/reserve-info`,
-			method: "POST",
-			data: data,
-			success: function (data) {
-				console.log(data);
-			},
-			error: function (error) {
-				console.log(error);
-			},
-		});
-		// }
+			//send data to node.js server
+			$.ajax({
+				url: `${window.location.origin}/reserve-info`,
+				method: "POST",
+				data: data,
+				success: function (data) {
+					console.log(data);
+				},
+				error: function (error) {
+					console.log(error);
+				},
+			});
+		}
 	});
 }
 

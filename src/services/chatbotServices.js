@@ -427,4 +427,5 @@ module.exports = {
 	handleSendBkhoaiDetails: handleSendBkhoaiDetails,
 	handleSendBtroDetails: handleSendBtroDetails,
 	callSendAPI: callSendAPI,
+	getUserName: getUserName,
 };
