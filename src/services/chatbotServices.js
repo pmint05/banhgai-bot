@@ -140,17 +140,19 @@ let getStartTemplate = (username) => {
 						buttons: [
 							{
 								type: "postback",
-								title: "📜 MENU 📜",
+								title: "MENU",
 								payload: "MENU",
 							},
 							{
-								type: "postback",
+								type: "web_url",
 								title: "ĐẶT BÁNH",
-								payload: "RESERVE",
+								url: `${process.env.URL_WEBVIEW_ORDER}`,
+								webview_height_ratio: "tall",
+								messenger_extensions: true,
 							},
 							{
 								type: "postback",
-								title: "ⓘ THÔNG TIN ⓘ",
+								title: "THÔNG TIN",
 								payload: "INFOMATION",
 							},
 						],
@@ -185,7 +187,7 @@ let getInfoTemplate = () => {
 				buttons: [
 					{
 						type: "postback",
-						title: "📜 MENU 📜",
+						title: "MENU",
 						payload: "MENU",
 					},
 					{
@@ -195,7 +197,7 @@ let getInfoTemplate = () => {
 					},
 					{
 						type: "phone_number",
-						title: "✔️ ĐẶT BÁNH NGAY ✔️",
+						title: "✔️ ĐẶT BÁNH ✔️",
 						payload: "+84399514332",
 					},
 				],
@@ -229,13 +231,15 @@ let getMenuTemplate = () => {
 					{
 						title: "Bánh Gai",
 						subtitle:
-							"4k/cái\nMột loại bánh ngọt truyền thống của Việt Nam. Bánh có màu đen màu của lá Gai, mùi thơm đặc trưng của đỗ xanh và gạo nếp.",
+							"5k/cái\nMột loại bánh ngọt truyền thống của Việt Nam. Bánh có màu đen màu của lá Gai, mùi thơm đặc trưng của đỗ xanh và gạo nếp.",
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
-								type: "postback",
+								type: "web_url",
 								title: "ĐẶT NGAY",
-								payload: "RESERVE_NOW",
+								url: `${process.env.URL_WEBVIEW_ORDER}`,
+								webview_height_ratio: "tall",
+								messenger_extensions: true,
 							},
 							{
 								type: "postback",
@@ -251,9 +255,11 @@ let getMenuTemplate = () => {
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
-								type: "postback",
+								type: "web_url",
 								title: "ĐẶT NGAY",
-								payload: "RESERVE_NOW",
+								url: `${process.env.URL_WEBVIEW_ORDER}`,
+								webview_height_ratio: "tall",
+								messenger_extensions: true,
 							},
 							{
 								type: "postback",
@@ -269,9 +275,11 @@ let getMenuTemplate = () => {
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
-								type: "postback",
+								type: "web_url",
 								title: "ĐẶT NGAY",
-								payload: "RESERVE_NOW",
+								url: `${process.env.URL_WEBVIEW_ORDER}`,
+								webview_height_ratio: "tall",
+								messenger_extensions: true,
 							},
 							{
 								type: "postback",
@@ -287,9 +295,11 @@ let getMenuTemplate = () => {
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
-								type: "postback",
+								type: "web_url",
 								title: "ĐẶT NGAY",
-								payload: "RESERVE_NOW",
+								url: `${process.env.URL_WEBVIEW_ORDER}`,
+								webview_height_ratio: "tall",
+								messenger_extensions: true,
 							},
 							{
 								type: "postback",
@@ -305,9 +315,11 @@ let getMenuTemplate = () => {
 						image_url: IMAGE_GET_STARTED,
 						buttons: [
 							{
-								type: "postback",
+								type: "web_url",
 								title: "ĐẶT NGAY",
-								payload: "RESERVE_NOW",
+								url: `${process.env.URL_WEBVIEW_ORDER}`,
+								webview_height_ratio: "tall",
+								messenger_extensions: true,
 							},
 							{
 								type: "postback",

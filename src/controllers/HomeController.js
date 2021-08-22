@@ -133,7 +133,6 @@ async function handlePostback(sender_psid, received_postback) {
 		case "MENU":
 			await chatbotServices.handleSendMenu(sender_psid);
 			break;
-		case "RESERVE":
 		case "INFOMATION":
 			await chatbotServices.handleSendInfo(sender_psid);
 			break;
@@ -231,9 +230,9 @@ let setupPersistentMenu = async (req, res) => {
 						webview_height_ratio: "full",
 					},
 					{
-						type: "phone_number",
-						title: "☎️ Gọi Ngay ☎️",
-						payload: "+84399514332",
+						type: "postback",
+						title: "Đặt bánh ngay!",
+						payload: "RESERVE",
 					},
 					{
 						type: "postback",
@@ -265,10 +264,14 @@ let setupPersistentMenu = async (req, res) => {
 
 	return res.send("Setup persistent menu succeeds!");
 };
+let handleReservev = (req, res) => {
+	return res.render("reserve.ejs");
+};
 module.exports = {
 	getHomePage: getHomePage,
 	postWebhook: postWebhook,
 	getWebhook: getWebhook,
 	setupProfile: setupProfile,
 	setupPersistentMenu: setupPersistentMenu,
+	handleReservev: handleReservev,
 };
