@@ -147,7 +147,7 @@ let getStartTemplate = (username) => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT BÁNH",
-								webview_height_ratio: "full",
+								webview_height_ratio: "tall",
 								messenger_extension: true,
 							},
 							{
@@ -196,9 +196,11 @@ let getInfoTemplate = () => {
 						payload: "+84399514332",
 					},
 					{
-						type: "phone_number",
-						title: "✔️ ĐẶT BÁNH ✔️",
-						payload: "+84399514332",
+						type: "web_url",
+						url: `${process.env.URL_WEBVIEW_ORDER}`,
+						title: "ĐẶT BÁNH",
+						webview_height_ratio: "tall",
+						messenger_extension: true,
 					},
 				],
 			},
@@ -236,10 +238,10 @@ let getMenuTemplate = () => {
 						buttons: [
 							{
 								type: "web_url",
-								title: "ĐẶT NGAY",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
-								webview_height_ratio: "full",
-								messenger_extensions: true,
+								title: "ĐẶT NGAY",
+								webview_height_ratio: "tall",
+								messenger_extension: true,
 							},
 							{
 								type: "postback",
@@ -256,10 +258,10 @@ let getMenuTemplate = () => {
 						buttons: [
 							{
 								type: "web_url",
-								title: "ĐẶT NGAY",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
-								webview_height_ratio: "full",
-								messenger_extensions: true,
+								title: "ĐẶT NGAY",
+								webview_height_ratio: "tall",
+								messenger_extension: true,
 							},
 							{
 								type: "postback",
@@ -276,10 +278,10 @@ let getMenuTemplate = () => {
 						buttons: [
 							{
 								type: "web_url",
-								title: "ĐẶT NGAY",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
-								webview_height_ratio: "full",
-								messenger_extensions: true,
+								title: "ĐẶT NGAY",
+								webview_height_ratio: "tall",
+								messenger_extension: true,
 							},
 							{
 								type: "postback",
@@ -298,8 +300,8 @@ let getMenuTemplate = () => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT NGAY",
-								webview_height_ratio: "full",
-								messenger_extensions: true,
+								webview_height_ratio: "tall",
+								messenger_extension: true,
 							},
 							{
 								type: "postback",
@@ -316,10 +318,10 @@ let getMenuTemplate = () => {
 						buttons: [
 							{
 								type: "web_url",
-								title: "ĐẶT NGAY",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
-								webview_height_ratio: "full",
-								messenger_extensions: true,
+								title: "ĐẶT NGAY",
+								webview_height_ratio: "tall",
+								messenger_extension: true,
 							},
 							{
 								type: "postback",
