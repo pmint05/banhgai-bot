@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* MAD-RIPPLE EFFECT */
+.ripple {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+	-webkit-transform: translateZ(0); /* to contain zoomed ripple */
+	transform: translateZ(0);
+	border-radius: inherit; /* inherit from parent (rounded buttons etc) */
+	pointer-events: none; /* allow user interaction */
+	animation: ripple-shadow 0.8s forwards;
+	-webkit-animation: ripple-shadow 0.8s forwards;
+}
+.rippleWave {
+	backface-visibility: hidden;
+	position: absolute;
+	border-radius: 50%;
+	transform: scale(0.7);
+	-webkit-transform: scale(0.7);
+	background: rgba(255, 255, 255, 1);
+	opacity: 0.45;
+	animation: ripple 2.4s forwards;
+	-webkit-animation: ripple 2.4s forwards;
+}
+@keyframes ripple-shadow {
+	0% {
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+	}
+	20% {
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+	}
+	100% {
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
+@-webkit-keyframes ripple-shadow {
+	0% {
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+	}
+	20% {
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+	}
+	100% {
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
+@keyframes ripple {
+	to {
+		transform: scale(24);
+		opacity: 0;
+	}
+}
+@-webkit-keyframes ripple {
+	to {
+		-webkit-transform: scale(24);
+		opacity: 0;
+	}
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	align-items: center;
+	font-family: "Poppins", sans-serif;
+}
+button,
+input,
+textarea {
+	border: none;
+	outline: none;
+}
+a {
+	text-decoration: none;
+	color: initial;
+}
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.title {
+	font-size: 1.5rem;
+}
+form {
+	position: relative;
+	width: 50%;
+	font-family: "Poppins", sans-serif;
+	margin-top: 0px;
+}
+form .form-row {
+	display: flex;
+	margin: 32px 0;
+}
+form .form-row .input-data {
+	width: 100%;
+	height: 40px;
+	margin: 0 20px;
+	position: relative;
+}
+form .form-row .type-of-cake {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: auto;
+}
+form .form-row .type-of-cake p {
+	margin-right: 10px;
+}
+form .form-row .type-of-cake .number {
+	width: 85px;
+}
+form .form-row .location {
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+form .form-row .location .select-location {
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	gap: 10px;
+	width: 100%;
+	margin-top: 10px;
+	overflow: hidden;
+}
+form .form-row .location .select-location .add-num {
+	overflow: hidden;
+}
+
+form .form-row .textarea {
+	height: 70px;
+}
+.input-data input,
+.textarea textarea {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: none;
+	font-size: 17px;
+	border-bottom: 2px solid #ccc;
+	color: #111;
+}
+.input-data input:focus ~ label,
+.textarea textarea:focus ~ label,
+.input-data input:valid ~ label,
+.textarea textarea:valid ~ label {
+	transform: translateY(-25px);
+	font-size: 14px;
+	color: #111;
+}
+.textarea textarea {
+	resize: none;
+	padding-top: 10px;
+}
+.input-data label {
+	position: absolute;
+	pointer-events: none;
+	bottom: 10px;
+	font-size: 1em;
+	transition: all 0.3s ease;
+	color: #444;
+}
+.textarea label {
+	width: 100%;
+	bottom: 40px;
+	background: transparent;
+}
+.input-data .underline {
+	position: absolute;
+	bottom: 0;
+	height: 2px;
+	width: 100%;
+}
+.input-data .underline::before {
+	position: absolute;
+	content: "";
+	height: 2px;
+	width: 100%;
+	background: #111;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.3s ease;
+}
+.input-data input:focus ~ .underline:before,
+.input-data input:valid ~ .underline:before,
+.textarea textarea:focus ~ .underline:before,
+.textarea textarea:valid ~ .underline:before {
+	transform: scale(1);
+}
+
+.submit-btn {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin-top: 0px !important;
+}
+
+.submit-btn button {
+	color: #111;
+	transition: 0.3s ease-in-out;
+	background: none;
+	border: none;
+	font-size: 1em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0px;
+	cursor: pointer;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 2;
+	height: 50px;
+	width: 150px;
+	border-radius: 50px;
+	border: 2px solid #111;
+}
+.submit-btn button:hover {
+	background: #111;
+	color: #fff;
+	letter-spacing: 2px;
+}
+select,
+button {
+	position: relative;
+	cursor: pointer;
+}
+select {
+	border: solid 1px #111;
+	outline: none;
+}
