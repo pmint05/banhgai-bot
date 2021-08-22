@@ -272,7 +272,7 @@ let setupPersistentMenu = async (req, res) => {
 let handleReserve = (req, res) => {
 	return res.render("reserve.ejs");
 };
-let handlePostReserve = (req, res) => {
+let handlePostReserve = async (req, res) => {
 	try {
 		let customerName = "";
 		if (req.body.customerName === "") {
