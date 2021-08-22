@@ -140,7 +140,7 @@ let getStartTemplate = (username) => {
 						buttons: [
 							{
 								type: "postback",
-								title: "MENU",
+								title: "📜 MENU 📜",
 								payload: "MENU",
 							},
 							{
@@ -150,7 +150,7 @@ let getStartTemplate = (username) => {
 							},
 							{
 								type: "postback",
-								title: "THÔNG TIN",
+								title: "ⓘ THÔNG TIN ⓘ",
 								payload: "INFOMATION",
 							},
 						],
@@ -185,12 +185,17 @@ let getInfoTemplate = () => {
 				buttons: [
 					{
 						type: "postback",
-						title: "MENU",
+						title: "📜 MENU 📜",
 						payload: "MENU",
 					},
 					{
 						type: "phone_number",
-						title: "☎️ Gọi Ngay ☎️",
+						title: "☎️ GỌI NGAY ☎️",
+						payload: "+84399514332",
+					},
+					{
+						type: "phone_number",
+						title: "✔️ ĐẶT BÁNH NGAY ✔️",
 						payload: "+84399514332",
 					},
 				],
