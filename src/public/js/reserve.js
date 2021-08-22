@@ -18,7 +18,6 @@ window.extAsyncInit = function () {
 			// success
 			//set psid to input
 			$("#psid").val(thread_context.psid);
-			handleClickButtonReserve();
 		},
 		function error(err) {
 			// error
