@@ -231,6 +231,11 @@ let setupPersistentMenu = async (req, res) => {
 						webview_height_ratio: "full",
 					},
 					{
+						type: "phone_number",
+						title: "☎️ Gọi Ngay ☎️",
+						payload: "+84399514332",
+					},
+					{
 						type: "postback",
 						title: "Khởi động lại bot",
 						payload: "RESTART_CHATBOT",

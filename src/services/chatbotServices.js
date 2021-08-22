@@ -161,14 +161,52 @@ let getStartTemplate = (username) => {
 	};
 	return response;
 };
+let handleSendInfo = (sender_psid) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			let response = getInfoTemplate();
+
+			//send generic template message
+			await callSendAPI(sender_psid, response);
+
+			resolve("done");
+		} catch (e) {
+			reject(e);
+		}
+	});
+};
+let getInfoTemplate = () => {
+	let response = {
+		attachment: {
+			type: "template",
+			payload: {
+				template_type: "button",
+				text: "BÁNH GAI BÀ THÚY là ",
+				buttons: [
+					{
+						type: "postback",
+						title: "MENU",
+						payload: "MENU",
+					},
+					{
+						type: "phone_number",
+						title: "☎️ Gọi Ngay ☎️",
+						payload: "+84399514332",
+					},
+				],
+			},
+		},
+	};
+	return response;
+};
 
 let handleSendMenu = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			let response1 = getMenuTemplate();
+			let response = getMenuTemplate();
 
 			//send text message
-			await callSendAPI(sender_psid, response1);
+			await callSendAPI(sender_psid, response);
 
 			resolve("done");
 		} catch (e) {
@@ -299,7 +337,7 @@ let handleSendBgioDetails = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			let response = {
-				text: "▷ Thành phần:\n• Vỏ bánh: Bột gạo tẻ.\n• Nhân bánh: Thịt băm, mộc nhĩ, hành khô.\n▷ Hạn sử dụng: Dùng trong ngày.",
+				text: "▷ Bánh giò là một món bánh ngon, dễ ăn, được rất nhiều người yêu thích. Món bánh này còn gắn liền với ký ức tuổi thơ của biết bao thế hệ học sinh, sinh viên Việt Nam.\n▷ Thành phần:\n• Vỏ bánh: Bột gạo tẻ.\n• Nhân bánh: Thịt băm, mộc nhĩ, hành khô.\n▷ Hạn sử dụng: Dùng trong ngày.",
 			};
 
 			//send generic template message
@@ -363,6 +401,7 @@ let handleSendBtroDetails = (sender_psid) => {
 module.exports = {
 	handleGetStarted: handleGetStarted,
 	handleSendMenu: handleSendMenu,
+	handleSendInfo: handleSendInfo,
 	handleSendBgaiDetails: handleSendBgaiDetails,
 	handleSendBgioDetails: handleSendBgioDetails,
 	handleSendBromDetails: handleSendBromDetails,
