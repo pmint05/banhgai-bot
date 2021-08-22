@@ -290,7 +290,7 @@ let handlePostReserve = async (req, res) => {
             `,
 		};
 
-		await chatbotService.callSendAPI(req.body.psid, response1);
+		await chatbotServices.callSendAPI(req.body.psid, response1);
 
 		return res.status(200).json({
 			message: "ok",
