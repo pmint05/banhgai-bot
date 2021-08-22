@@ -145,10 +145,10 @@ let getStartTemplate = (username) => {
 							},
 							{
 								type: "web_url",
-								title: "ĐẶT BÁNH",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
+								title: "ĐẶT BÁNH",
 								webview_height_ratio: "full",
-								messenger_extensions: true,
+								messenger_extension: true,
 							},
 							{
 								type: "postback",
