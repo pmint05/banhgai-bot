@@ -197,7 +197,7 @@ let setupProfile = async (req, res) => {
 	// Send the HTTP request to the Messenger Platform
 	await request(
 		{
-			uri: `https://graph.facebook.com/v11.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+			uri: `https://graph.facebook.com/v11.0/me/messenger_profile`,
 			qs: { access_token: PAGE_ACCESS_TOKEN },
 			method: "POST",
 			json: request_body,
