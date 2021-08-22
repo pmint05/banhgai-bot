@@ -1,3 +1,32 @@
+(function (d, s, id) {
+	var js,
+		fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) {
+		return;
+	}
+	js = d.createElement(s);
+	js.id = id;
+	js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+	fjs.parentNode.insertBefore(js, fjs);
+})(document, "script", "Messenger");
+window.extAsyncInit = function () {
+	// the Messenger Extensions JS SDK is done loading
+
+	MessengerExtensions.getContext(
+		"AppID",
+		function success(thread_context) {
+			// success
+			//set psid to input
+			$("#psid").val(thread_context.psid);
+			handleClickButtonReserve();
+		},
+		function error(err) {
+			// error
+			console.log("Reserve error:", err);
+		}
+	);
+};
+
 var districts = document.getElementById("district");
 var wards = document.getElementById("ward");
 var Parameter = {
