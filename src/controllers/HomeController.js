@@ -310,4 +310,5 @@ module.exports = {
 	setupPersistentMenu: setupPersistentMenu,
 	handleReserve: handleReserve,
 	handlePostReserve: handlePostReserve,
+	handlePostReserve: handlePostReserve,
 };
