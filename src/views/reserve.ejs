@@ -3,24 +3,10 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Form đặt bánh</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+		<title>ĐẶT BÁNH | BÁNH GAI BÀ THÚY</title>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script> -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="/css/reserve.css" />
-		<!-- Latest compiled and minified CSS -->
-		<link
-			rel="stylesheet"
-			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-		/>
-
-		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-		<!-- Popper JS -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-		<!-- Latest compiled JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 		<script src="/js/reserve.js"></script>
 	</head>
 	<body>
@@ -28,27 +14,7 @@
 			<h1 class="title">Thông tin khách hàng</h1>
 			<form action="" name="contact-form">
 				<input type="text" id="psid" hidden />
-				<div class="form-row">
-					<div class="input-data type-of-cake">
-						<p>Loại bánh:</p>
-						<select name="select" class="type" id="type">
-							<option value="BGAI">Bánh Gai</option>
-							<option value="BGIO">Bánh Giò</option>
-							<option value="BROMM">Bánh Rợm (Mặn)</option>
-							<option value="BROMN">Bánh Rợm (Ngọt)</option>
-							<option value="BKHOAI">Bánh Khoai</option>
-							<option value="BTRO">Bánh Gio</option>
-						</select>
-						<div class="input-data number">
-							<input
-								type="number"
-								name="soluong"
-								id="number"
-								placeholder="Số lượng"
-							/>
-						</div>
-					</div>
-				</div>
+
 				<div class="form-row">
 					<div class="input-data">
 						<input
@@ -78,9 +44,23 @@
 					</div>
 				</div>
 				<div class="form-row">
+					<div class="input-data">
+						<input
+							type="text"
+							required
+							class="address"
+							id="address"
+							name="address"
+							autocomplete="on"
+						/>
+						<div class="underline"></div>
+						<label for="">Địa chỉ</label>
+					</div>
+				</div>
+				<!-- <div class="form-row">
 					<div class="input-data location">
 						<p>Địa chỉ</p>
-						<div class="select-location">
+						<div class="location-input">
 							<select class="form-select" id="city">
 								<option value="" selected>Tỉnh, thành</option>
 							</select>
@@ -100,6 +80,45 @@
 							/>
 						</div>
 					</div>
+				</div> -->
+				<div class="form-row">
+					<div class="input-data type-of-cake">
+						<p>Loại bánh:</p>
+						<div class="cake-input">
+							<select name="select" class="type" id="type">
+								<option data-price="5" value="BGAI">
+									Bánh Gai
+								</option>
+								<option data-price="5" value="BGIO">
+									Bánh Giò
+								</option>
+								<option data-price="5" value="BROMM">
+									Bánh Rợm (Mặn)
+								</option>
+								<option data-price="5" value="BROMN">
+									Bánh Rợm (Ngọt)
+								</option>
+								<option data-price="6" value="BKHOAI">
+									Bánh Khoai
+								</option>
+								<option data-price="5" value="BTRO">
+									Bánh Gio
+								</option>
+							</select>
+							<div class="input-data number-inp">
+								<input
+									type="number"
+									required
+									class="number"
+									id="number"
+									name="number"
+									autocomplete="on"
+								/>
+								<div class="underline"></div>
+								<label for="">Số lượng</label>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="form-row">
 					<div class="input-data textarea">
@@ -116,18 +135,18 @@
 						<div class="underline"></div>
 						<label for="">Ghi chú</label>
 						<br />
-						<div class="form-row submit-btn">
-							<button
-								data-ripple
-								type="button"
-								value="submit"
-								class="submit"
-								id="btnReserveTable"
-							>
-								Đặt ngay
-							</button>
-						</div>
 					</div>
+				</div>
+				<div class="form-row submit-btn">
+					<button
+						data-ripple
+						type="button"
+						value="submit"
+						class="submit"
+						id="btnReserve"
+					>
+						Đặt ngay
+					</button>
 				</div>
 			</form>
 		</div>

@@ -66,13 +66,14 @@
 	box-sizing: border-box;
 }
 body {
-	height: 100vh;
+	min-height: 100vh;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	/* justify-content: center; */
 	align-items: center;
 	font-family: "Poppins", sans-serif;
+	padding: 10px;
 }
 button,
 input,
@@ -88,19 +89,20 @@ a {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 100%;
 }
 .title {
 	font-size: 1.5rem;
 }
 form {
 	position: relative;
-	width: 50%;
+	width: 100%;
 	font-family: "Poppins", sans-serif;
 	margin-top: 0px;
 }
 form .form-row {
 	display: flex;
-	margin: 32px 0;
+	margin: 20px 0;
 }
 form .form-row .input-data {
 	width: 100%;
@@ -108,32 +110,39 @@ form .form-row .input-data {
 	margin: 0 20px;
 	position: relative;
 }
+form .form-row .input-data.number-inp {
+	width: 50% !important;
+}
+form .form-row .input-data.number-inp input {
+	width: 100% !important;
+}
 form .form-row .type-of-cake {
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	justify-content: space-evenly;
 	align-items: center;
 	height: auto;
+}
+form .form-row .cake-input {
+	display: flex;
 }
 form .form-row .type-of-cake p {
 	margin-right: 10px;
 }
 form .form-row .type-of-cake .number {
-	width: 85px;
+	width: auto;
 }
-form .form-row .location {
-	height: auto;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-}
-form .form-row .location .select-location {
+form .form-row .location .location-input {
 	display: grid;
-	grid-template-columns: repeat(2, auto);
+	grid-template-columns: calc(100% / 2 - 10px) calc(100% / 2 - 10px);
 	gap: 10px;
 	width: 100%;
 	margin-top: 10px;
 	overflow: hidden;
 }
+form .form-row .location {
+	height: auto;
+}
+
 form .form-row .location .select-location .add-num {
 	overflow: hidden;
 }
@@ -205,7 +214,7 @@ form .form-row .textarea {
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	margin-top: 0px !important;
+	margin: 0 !important;
 }
 
 .submit-btn button {
@@ -219,9 +228,6 @@ form .form-row .textarea {
 	letter-spacing: 0px;
 	cursor: pointer;
 	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	z-index: 2;
 	height: 50px;
 	width: 150px;
@@ -241,4 +247,165 @@ button {
 select {
 	border: solid 1px #111;
 	outline: none;
+	padding: 0.5rem;
 }
+/* @media only screen and (max-width: 500px) {
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.title {
+		font-size: 1.5rem;
+	}
+	form {
+		position: relative;
+		width: 50%;
+		font-family: "Poppins", sans-serif;
+		margin-top: 0px;
+	}
+	form .form-row {
+		display: flex;
+		margin: 32px 0;
+	}
+	form .form-row .input-data {
+		width: 100%;
+		height: 40px;
+		margin: 0 20px;
+		position: relative;
+	}
+	form .form-row .type-of-cake {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: auto;
+	}
+	form .form-row .type-of-cake p {
+		margin-right: 10px;
+	}
+	form .form-row .type-of-cake .number {
+		width: 85px;
+	}
+	form .form-row .location {
+		height: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	form .form-row .location .select-location {
+		display: grid;
+		grid-template-columns: repeat(2, auto);
+		gap: 10px;
+		width: 100%;
+		margin-top: 10px;
+		overflow: hidden;
+	}
+	form .form-row .location .select-location .add-num {
+		overflow: hidden;
+	}
+
+	form .form-row .textarea {
+		height: 70px;
+	}
+	.input-data input,
+	.textarea textarea {
+		display: block;
+		width: 100%;
+		height: 100%;
+		border: none;
+		font-size: 17px;
+		border-bottom: 2px solid #ccc;
+		color: #111;
+	}
+	.input-data input:focus ~ label,
+	.textarea textarea:focus ~ label,
+	.input-data input:valid ~ label,
+	.textarea textarea:valid ~ label {
+		transform: translateY(-25px);
+		font-size: 14px;
+		color: #111;
+	}
+	.textarea textarea {
+		resize: none;
+		padding-top: 10px;
+	}
+	.input-data label {
+		position: absolute;
+		pointer-events: none;
+		bottom: 10px;
+		font-size: 1em;
+		transition: all 0.3s ease;
+		color: #444;
+	}
+	.textarea label {
+		width: 100%;
+		bottom: 40px;
+		background: transparent;
+	}
+	.input-data .underline {
+		position: absolute;
+		bottom: 0;
+		height: 2px;
+		width: 100%;
+	}
+	.input-data .underline::before {
+		position: absolute;
+		content: "";
+		height: 2px;
+		width: 100%;
+		background: #111;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.3s ease;
+	}
+	.input-data input:focus ~ .underline:before,
+	.input-data input:valid ~ .underline:before,
+	.textarea textarea:focus ~ .underline:before,
+	.textarea textarea:valid ~ .underline:before {
+		transform: scale(1);
+	}
+
+	.submit-btn {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-top: 0px !important;
+	}
+
+	.submit-btn button {
+		color: #111;
+		transition: 0.3s ease-in-out;
+		background: none;
+		border: none;
+		font-size: 1em;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0px;
+		cursor: pointer;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 2;
+		height: 50px;
+		width: 150px;
+		border-radius: 50px;
+		border: 2px solid #111;
+	}
+	.submit-btn button:hover {
+		background: #111;
+		color: #fff;
+		letter-spacing: 2px;
+	}
+	select,
+	button {
+		position: relative;
+		cursor: pointer;
+	}
+	select {
+		border: solid 1px #111;
+		outline: none;
+	}
+} */
