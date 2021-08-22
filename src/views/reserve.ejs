@@ -1,89 +1,81 @@
-<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Info Lookup Order</title>
-		<!-- Load Bootstrap 4, JQuery-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Đặt bàn nhà hàng Eric</title>
+		<!-- Latest compiled and minified CSS -->
 		<link
 			rel="stylesheet"
-			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-			crossorigin="anonymous"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 		/>
+
+		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 		<!-- Load custom Javascript and CSS-->
 		<!-- <link rel="stylesheet" href="/css/reserve.css" /> -->
-
-		<!-- <script src="/js/reserve.js"></script> -->
+		<script src="/js/reserve.js"></script>
 	</head>
+
 	<body>
 		<div class="container fix-height">
 			<div class="row">
 				<div class="col-12">
 					<div class="text-center mt-3">
-						<span class="title">Order lookup</span>
+						<span class="title">Thông tin khách hàng</span>
 					</div>
 					<input type="text" id="psid" hidden />
 					<div class="form-group">
-						<label for="customerName">Customer:</label>
+						<label for="customerName">Họ và tên:</label>
 						<input
 							type="text"
 							id="customerName"
 							class="form-control"
-							placeholder="Name..."
+							placeholder="Họ và tên..."
 						/>
 					</div>
 					<div class="form-group">
 						<label for="email"
-							>Email address (<span style="color: red">*</span
+							>Địa chỉ email (<span style="color: red">*</span
 							>):</label
 						>
 						<input
 							type="email"
 							id="email"
 							class="form-control"
-							placeholder="Email address..."
+							placeholder="Địa chỉ email..."
 						/>
 						<div class="invalid-feedback">
-							Please fill out your email address.
+							Địa chỉ email không hợp lệ.
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="orderNumber"
-							>Order number (<span style="color: red">*</span
+						<label for="phoneNumber"
+							>Số điện thoại (<span style="color: red">*</span
 							>):</label
 						>
 						<input
 							type="text"
-							id="orderNumber"
+							id="phoneNumber"
 							class="form-control"
-							placeholder="Order number..."
+							placeholder="Số điện thoại..."
 						/>
 						<div class="invalid-feedback">
-							Please fill out your order number.
+							Số điện thoại không hợp lệ.
 						</div>
 					</div>
-					<button class="btn btn-primary" id="btnFindOrder">
-						FIND ORDER
+					<button class="btn btn-primary" id="btnReserveTable">
+						ĐẶT BÀN
 					</button>
 				</div>
 			</div>
 		</div>
-		<footer>
-			<div class="text-center">
-				<div class="">
-					<span class="mr-3"> &copy; Chatbot Tutorial</span>
-					<span class="ml-3">
-						Powered by
-						<a
-							href="https://bit.ly/subscribe-haryphamdev"
-							target="_blank"
-							>HaryPhamDev</a
-						>
-					</span>
-				</div>
-			</div>
-		</footer>
 	</body>
 </html>
