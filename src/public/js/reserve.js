@@ -53,15 +53,23 @@ window.extAsyncInit = function () {
 
 // 	return false;
 // }
-$('input[type="text"]').keyup(function (evt) {
-	// force: true to lower case all letter except first
-	var cp_value = ucwords($(this).val(), true);
+jQuery.fn.capitalize = function () {
+	$(this[0]).keyup(function (event) {
+		var box = event.target;
+		var txt = $(this).val();
+		var stringStart = box.selectionStart;
+		var stringEnd = box.selectionEnd;
+		$(this).val(
+			txt.replace(/^(.)|(s|-)(.)/g, function ($word) {
+				return $word.toUpperCase();
+			})
+		);
+		box.setSelectionRange(stringStart, stringEnd);
+	});
 
-	// to capitalize all words
-	//var cp_value= ucwords($(this).val(),true) ;
-
-	$(this).val(cp_value);
-});
+	return this;
+};
+$('input[type="text"]').capitalize();
 function handleClickReserveButton() {
 	$("#btnReserve").on("click", function (e) {
 		// let check = validateInputFields();
