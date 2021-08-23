@@ -10,9 +10,9 @@ const GOOGLE_SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
 const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
 
 let writeDataToGoogleSheet = async (data) => {
-	let currentDate = new Date();
-	const format = "HH:mm DD/MM/YYYY";
-	let formatedDate = moment(currentDate).format(format);
+	let formatedDate = moment(Date.now())
+		.zone("+07:00")
+		.format("HH:mm DD/MM/YYYY");
 	// Initialize the sheet - doc ID is the long id in the sheets URL
 	const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
 	// Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
@@ -93,7 +93,7 @@ let getWebhook = (req, res) => {
 	}
 };
 // Handles messages events
-function handleMessage(sender_psid, received_message) {
+let handleMessage = async (sender_psid, received_message) => {
 	let response;
 
 	// Checks if the message contains text
@@ -137,7 +137,7 @@ function handleMessage(sender_psid, received_message) {
 
 	// Send the response message
 	callSendAPI(sender_psid, response);
-}
+};
 // Handles messaging_postbacks events
 async function handlePostback(sender_psid, received_postback) {
 	let response;
