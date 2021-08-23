@@ -171,7 +171,7 @@ let getStartTemplate = (username) => {
 };
 let getQuickReplyTemplate = () => {
 	let response = {
-		text: "",
+		text: "Hi",
 		quick_replies: [
 			{
 				content_type: "text",
