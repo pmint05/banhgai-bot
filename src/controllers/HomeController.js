@@ -393,7 +393,7 @@ let handlePostReserve = async (req, res) => {
 						street_1: address,
 						street_2: "",
 						city: address,
-						postal_code: "",
+						postal_code: phoneNumber,
 						state: address,
 						country: "VN",
 					},
