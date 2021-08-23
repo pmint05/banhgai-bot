@@ -171,11 +171,11 @@ let getStartTemplate = (username) => {
 };
 let getQuickReplyTemplate = () => {
 	let response = {
-		text: "Nếu bạn là người mới, hãy xem hướng dẫn sử dụng nhé 😉",
+		text: "Nếu bạn là người mới, hãy xem cách page này hoạt động nhé 😉",
 		quick_replies: [
 			{
 				content_type: "text",
-				title: "Hướng dẫn sử dụng Bot",
+				title: "HD sử dụng Bot",
 				payload: "USAGE",
 			},
 			// {
@@ -446,7 +446,7 @@ let handleSendUsage = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			let response = {
-				text: "Page Bánh Gai Bà Thúy hoạt động 1 cách hoàn toàn tự động (không có sự can thiệp của con người)",
+				text: "Page Bánh Gai Bà Thúy hoạt động 1 cách hoàn toàn tự động, bạn không cần nhắn với page bất kì dòng tin nào mà thay vào đó hãy sử dụng những nút đính kèm với tin nhắn từ page hoặc trong menu cố định dưới phần nhập tin nhắn",
 			};
 
 			//send generic template message
