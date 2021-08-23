@@ -259,6 +259,10 @@ select {
 .input-data #number.is-invalid + .underline::before {
 	background: #ff3333;
 }
+#fullName,
+#address {
+	text-transform: capitalize;
+}
 /* @media only screen and (max-width: 500px) {
 	.container {
 		display: flex;

@@ -328,7 +328,7 @@ let handlePostReserve = async (req, res) => {
 			note: req.body.note,
 			username: username,
 		};
-		// await writeDataToGoogleSheet(data);
+		await writeDataToGoogleSheet(data);
 
 		let name = "";
 		if (req.body.fullName === "") {
