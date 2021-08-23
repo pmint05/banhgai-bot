@@ -326,7 +326,7 @@ let handlePostReserve = async (req, res) => {
 			name = username;
 		} else name = req.body.fullName;
 		let numOfCake = req.body.number;
-		typeOfCake = req.body.typeOfCake;
+		cakeType = req.body.typeOfCake;
 		address = req.body.address;
 		note = req.body.note;
 		phoneNumber = req.body.phoneNumber;
@@ -341,19 +341,19 @@ let handlePostReserve = async (req, res) => {
             \nHọ và tên: ${name}
             \nSố điện thoại: ${phoneNumber}
             \nĐịa chỉ: ${address}
-            \nLoại bánh: ${typeOfCake}
+            \nLoại bánh: ${cakeType}
             \nSố lượng: ${numOfCake}
             \nGhi chú: ${note}
             `,
 		};
 
-		if (typeOfCake == "Bánh Khoai") {
+		if (cakeType == "Bánh Khoai") {
 			price = 6000;
 		} else {
 			price = 5000;
 		}
 		let cost = numOfCake * price;
-		switch (typeOfCake) {
+		switch (cakeType) {
 			case "Bánh Gai":
 				productImageUrl =
 					"https://i.postimg.cc/rs93Bgqg/avt-remake.png";
@@ -406,7 +406,7 @@ let handlePostReserve = async (req, res) => {
 					adjustments: [],
 					elements: [
 						{
-							title: typeOfCake,
+							title: cakeType,
 							subtitle: note,
 							quantity: numOfCake,
 							price: price,
