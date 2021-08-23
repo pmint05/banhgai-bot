@@ -23,6 +23,16 @@ let writeDataToGoogleSheet = async (data) => {
 	await doc.loadInfo(); // loads document properties and worksheets
 	const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
 
+	// await sheet.addRow({
+	// 	"Họ & Tên": data.fullName,
+	// 	"Số Điện Thoại": data.phoneNumber,
+	// 	"Địa Chỉ": data.address,
+	// 	"Loại Bánh": data.typeOfCake,
+	// 	"Số Lượng": data.number,
+	// 	"Ghi Chú": data.note,
+	// 	"Thời Gian": formatedDate,
+	// 	"Tên Facebook": data.username,
+	// });
 	await sheet.addRow({
 		"Họ & Tên": data.fullName,
 		"Số Điện Thoại": data.phoneNumber,
@@ -352,6 +362,5 @@ module.exports = {
 	setupProfile: setupProfile,
 	setupPersistentMenu: setupPersistentMenu,
 	handleReserve: handleReserve,
-	handlePostReserve: handlePostReserve,
 	handlePostReserve: handlePostReserve,
 };

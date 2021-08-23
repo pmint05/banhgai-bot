@@ -6,32 +6,38 @@ const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const IMAGE_GET_STARTED = "https://i.postimg.cc/rs93Bgqg/avt-remake.png";
 
 let callSendAPI = async (sender_psid, response) => {
-	// Construct the message body
-	let request_body = {
-		recipient: {
-			id: sender_psid,
-		},
-		message: response,
-	};
-	await sendTypingOn(sender_psid);
-	await sendMarkReadMessage(sender_psid);
+	return new Promise(async (resolve, reject) => {
+		try {
+			// Construct the message body
+			let request_body = {
+				recipient: {
+					id: sender_psid,
+				},
+				message: response,
+			};
+			await sendTypingOn(sender_psid);
+			await sendMarkReadMessage(sender_psid);
 
-	// Send the HTTP request to the Messenger Platform
-	request(
-		{
-			uri: "https://graph.facebook.com/v2.6/me/messages",
-			qs: { access_token: PAGE_ACCESS_TOKEN },
-			method: "POST",
-			json: request_body,
-		},
-		(err, res, body) => {
-			if (!err) {
-				console.log("message sent!");
-			} else {
-				console.error("Unable to send message:" + err);
-			}
+			// Send the HTTP request to the Messenger Platform
+			request(
+				{
+					uri: "https://graph.facebook.com/v2.6/me/messages",
+					qs: { access_token: PAGE_ACCESS_TOKEN },
+					method: "POST",
+					json: request_body,
+				},
+				(err, res, body) => {
+					if (!err) {
+						resolve("message sent!");
+					} else {
+						console.error("Unable to send message:" + err);
+					}
+				}
+			);
+		} catch (error) {
+			reject(error);
 		}
-	);
+	});
 };
 let sendTypingOn = (sender_psid) => {
 	// Construct the message body
@@ -147,7 +153,7 @@ let getStartTemplate = (username) => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT BÁNH",
-								webview_height_ratio: "tall",
+								webview_height_ratio: "full",
 								messenger_extensions: true,
 							},
 							{
@@ -160,6 +166,26 @@ let getStartTemplate = (username) => {
 				],
 			},
 		},
+	};
+	return response;
+};
+let getQuickReplyTemplate = () => {
+	let response = {
+		text: "Pick a color:",
+		quick_replies: [
+			{
+				content_type: "text",
+				title: "Red",
+				payload: "<POSTBACK_PAYLOAD>",
+				image_url: "http://example.com/img/red.png",
+			},
+			{
+				content_type: "text",
+				title: "Green",
+				payload: "<POSTBACK_PAYLOAD>",
+				image_url: "http://example.com/img/green.png",
+			},
+		],
 	};
 	return response;
 };
@@ -199,7 +225,7 @@ let getInfoTemplate = () => {
 						type: "web_url",
 						url: `${process.env.URL_WEBVIEW_ORDER}`,
 						title: "ĐẶT BÁNH",
-						webview_height_ratio: "tall",
+						webview_height_ratio: "full",
 						messenger_extensions: true,
 					},
 				],
@@ -240,7 +266,7 @@ let getMenuTemplate = () => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT NGAY",
-								webview_height_ratio: "tall",
+								webview_height_ratio: "full",
 								messenger_extensions: true,
 							},
 							{
@@ -260,7 +286,7 @@ let getMenuTemplate = () => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT NGAY",
-								webview_height_ratio: "tall",
+								webview_height_ratio: "full",
 								messenger_extensions: true,
 							},
 							{
@@ -280,7 +306,7 @@ let getMenuTemplate = () => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT NGAY",
-								webview_height_ratio: "tall",
+								webview_height_ratio: "full",
 								messenger_extensions: true,
 							},
 							{
@@ -300,7 +326,7 @@ let getMenuTemplate = () => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT NGAY",
-								webview_height_ratio: "tall",
+								webview_height_ratio: "full",
 								messenger_extensions: true,
 							},
 							{
@@ -320,7 +346,7 @@ let getMenuTemplate = () => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT NGAY",
-								webview_height_ratio: "tall",
+								webview_height_ratio: "full",
 								messenger_extensions: true,
 							},
 							{
