@@ -339,60 +339,43 @@ let handlePostReserve = async (req, res) => {
             \nGhi chú: ${req.body.note}
             `,
 		};
+		var numOfCake = req.body.number;
+		var cost = 5000 * numOfCake;
 		let response2 = {
 			attachment: {
 				type: "template",
 				payload: {
 					template_type: "receipt",
-					recipient_name: "Stephane Crozatier",
+					recipient_name: name,
 					order_number: "12345678902",
-					currency: "USD",
-					payment_method: "Visa 2345",
-					order_url:
-						"http://petersapparel.parseapp.com/order?order_id=123456",
-					timestamp: "1428444852",
+					currency: "VND",
+					payment_method: "Thanh toán khi nhận hàng",
+					order_url: "https://banhgaibathuy.herokuapp.com/",
+					timestamp: moment().unix(),
 					address: {
-						street_1: "1 Hacker Way",
+						street_1: req.body.address,
 						street_2: "",
-						city: "Menlo Park",
-						postal_code: "94025",
-						state: "CA",
-						country: "US",
+						city: "",
+						postal_code: "",
+						state: "",
+						country: "VN",
 					},
 					summary: {
-						subtotal: 75.0,
-						shipping_cost: 4.95,
-						total_tax: 6.19,
-						total_cost: 56.14,
+						subtotal: cost,
+						shipping_cost: 0,
+						total_tax: 0,
+						total_cost: cost,
 					},
-					adjustments: [
-						{
-							name: "New Customer Discount",
-							amount: 20,
-						},
-						{
-							name: "$10 Off Coupon",
-							amount: 10,
-						},
-					],
+					adjustments: [],
 					elements: [
 						{
-							title: "Classic White T-Shirt",
-							subtitle: "100% Soft and Luxurious Cotton",
-							quantity: 2,
-							price: 50,
-							currency: "USD",
+							title: req.body.typeOfCake,
+							subtitle: "BGBT",
+							quantity: numOfCake,
+							price: 5000,
+							currency: "VND",
 							image_url:
-								"http://petersapparel.parseapp.com/img/whiteshirt.png",
-						},
-						{
-							title: "Classic Gray T-Shirt",
-							subtitle: "100% Soft and Luxurious Cotton",
-							quantity: 1,
-							price: 25,
-							currency: "USD",
-							image_url:
-								"http://petersapparel.parseapp.com/img/grayshirt.png",
+								"https://i.postimg.cc/rs93Bgqg/avt-remake.png",
 						},
 					],
 				},
