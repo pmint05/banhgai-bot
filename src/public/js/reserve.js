@@ -53,7 +53,15 @@ window.extAsyncInit = function () {
 
 // 	return false;
 // }
+$('input[type="text"]').keyup(function (evt) {
+	// force: true to lower case all letter except first
+	var cp_value = ucwords($(this).val(), true);
 
+	// to capitalize all words
+	//var cp_value= ucwords($(this).val(),true) ;
+
+	$(this).val(cp_value);
+});
 function handleClickReserveButton() {
 	$("#btnReserve").on("click", function (e) {
 		// let check = validateInputFields();

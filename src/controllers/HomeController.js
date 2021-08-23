@@ -12,7 +12,7 @@ const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
 
 let writeDataToGoogleSheet = async (data) => {
 	let formatedDate = moment(Date.now())
-		.zone("+07:00")
+		.utcOffset("+07:00")
 		.format("HH:mm DD/MM/YYYY");
 	// Initialize the sheet - doc ID is the long id in the sheets URL
 	const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
