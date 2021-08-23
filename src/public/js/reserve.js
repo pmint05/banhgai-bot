@@ -63,7 +63,7 @@ function handleClickReserveButton() {
 			phoneNumber: $("#phoneNumber").val(),
 			address: $("#address").val(),
 			note: $("#note").val(),
-			typeOfCake: $("#type option:selected").html(),
+			typeOfCake: $("#type option:selected").html().trim(),
 			number: $("#number").val(),
 		};
 
