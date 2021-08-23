@@ -5,13 +5,13 @@ let sendNotification = (recieved_data) => {
 		try {
 			let TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 			let TELEGRAM_GROUP_ID = process.env.TELEGRAM_GROUP_ID;
-			if (recieved_data.note === "") {
-				recieved_data.note = "<Không có>";
-			}
-			recieved_data.phoneNumber = recieved_data.phoneNumber.replace(
-				"'",
-				""
-			);
+			// if (recieved_data.note === "") {
+			// 	recieved_data.note = "<Không có>";
+			// }
+			// recieved_data.phoneNumber = recieved_data.phoneNumber.replace(
+			// 	"'",
+			// 	""
+			// );
 			let data = {
 				chat_id: TELEGRAM_GROUP_ID,
 				parse_mode: "HTML",
