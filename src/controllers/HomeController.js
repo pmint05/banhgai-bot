@@ -17,8 +17,8 @@ let writeDataToGoogleSheet = async (data) => {
 	const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
 	// Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
 	await doc.useServiceAccountAuth({
-		client_email: GOOGLE_SERVICE_ACCOUNT_EMAIL,
-		private_key: GOOGLE_PRIVATE_KEY,
+		client_email: JSON.parse(`"${GOOGLE_SERVICE_ACCOUNT_EMAIL}"`),
+		private_key: JSON.parse(`"${GOOGLE_PRIVATE_KEY}"`),
 	});
 	await doc.loadInfo(); // loads document properties and worksheets
 	const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
@@ -305,7 +305,7 @@ let handlePostReserve = async (req, res) => {
 		//write data to google sheet
 		let data = {
 			fullName: req.body.fullName,
-			phoneNumber: req.body.phoneNumber,
+			phoneNumber: `'${req.body.phoneNumber}`,
 			address: req.body.address,
 			typeOfCake: req.body.typeOfCake,
 			number: req.body.number,
