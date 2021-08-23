@@ -325,6 +325,13 @@ let handlePostReserve = async (req, res) => {
 		if (req.body.fullName === "") {
 			name = username;
 		} else name = req.body.fullName;
+		let numOfCake = req.body.number;
+		typeOfCake = req.body.typeOfCake;
+		address = req.body.address;
+		note = req.body.note;
+		phoneNumber = req.body.phoneNumber;
+		productImageUrl;
+		price;
 
 		// I demo response with sample text
 		// you can check database for customer order's status
@@ -332,15 +339,45 @@ let handlePostReserve = async (req, res) => {
 		let response1 = {
 			text: `---Thông tin khác hàng---
             \nHọ và tên: ${name}
-            \nSố điện thoại: ${req.body.phoneNumber}
-            \nĐịa chỉ: ${req.body.address}
-            \nLoại bánh: ${req.body.typeOfCake}
-            \nSố lượng: ${req.body.number}
-            \nGhi chú: ${req.body.note}
+            \nSố điện thoại: ${phoneNumber}
+            \nĐịa chỉ: ${address}
+            \nLoại bánh: ${typeOfCake}
+            \nSố lượng: ${numOfCake}
+            \nGhi chú: ${note}
             `,
 		};
-		var numOfCake = req.body.number;
-		var cost = 5000 * numOfCake;
+
+		if (typeOfCake == "Bánh Khoai") {
+			price = 6000;
+		} else {
+			price = 5000;
+		}
+		let cost = numOfCake * price;
+		switch (typeOfCake) {
+			case "Bánh Gai":
+				productImageUrl =
+					"https://i.postimg.cc/rs93Bgqg/avt-remake.png";
+				break;
+			case "Bánh Giò":
+				productImageUrl =
+					"https://i.postimg.cc/rs93Bgqg/avt-remake.png";
+				break;
+			case "Bánh Rợm":
+				productImageUrl =
+					"https://i.postimg.cc/rs93Bgqg/avt-remake.png";
+				break;
+			case "Bánh Khoai":
+				productImageUrl =
+					"https://i.postimg.cc/rs93Bgqg/avt-remake.png";
+				break;
+			case "Bánh Gio":
+				productImageUrl =
+					"https://i.postimg.cc/rs93Bgqg/avt-remake.png";
+				break;
+
+			default:
+				break;
+		}
 		let response2 = {
 			attachment: {
 				type: "template",
@@ -353,11 +390,11 @@ let handlePostReserve = async (req, res) => {
 					order_url: "https://banhgaibathuy.herokuapp.com/",
 					timestamp: moment().unix(),
 					address: {
-						street_1: req.body.address,
+						street_1: address,
 						street_2: "",
-						city: req.body.address,
-						postal_code: "120",
-						state: req.body.address,
+						city: address,
+						postal_code: "",
+						state: address,
 						country: "VN",
 					},
 					summary: {
@@ -369,13 +406,12 @@ let handlePostReserve = async (req, res) => {
 					adjustments: [],
 					elements: [
 						{
-							title: req.body.typeOfCake,
-							subtitle: req.body.note,
+							title: typeOfCake,
+							subtitle: note,
 							quantity: numOfCake,
-							price: 5000,
+							price: price,
 							currency: "VND",
-							image_url:
-								"https://i.postimg.cc/rs93Bgqg/avt-remake.png",
+							image_url: productImageUrl,
 						},
 					],
 				},
