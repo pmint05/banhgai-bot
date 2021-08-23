@@ -19,6 +19,16 @@ window.extAsyncInit = function () {
 			//set psid to input
 			$("#psid").val(thread_context.psid);
 			handleClickReserveButton();
+			$('input[type="text"]').keyup(function (evt) {
+				var txt = $(this).val();
+
+				// Regex taken from php.js (http://phpjs.org/functions/ucwords:569)
+				$(this).val(
+					txt.replace(/^(.)|s(.)/g, function ($1) {
+						return $1.toUpperCase();
+					})
+				);
+			});
 		},
 		function error(err) {
 			// error
@@ -53,23 +63,6 @@ window.extAsyncInit = function () {
 
 // 	return false;
 // }
-jQuery.fn.capitalize = function () {
-	$(this[0]).keyup(function (event) {
-		var box = event.target;
-		var txt = $(this).val();
-		var stringStart = box.selectionStart;
-		var stringEnd = box.selectionEnd;
-		$(this).val(
-			txt.replace(/^(.)|(s|-)(.)/g, function ($word) {
-				return $word.toUpperCase();
-			})
-		);
-		box.setSelectionRange(stringStart, stringEnd);
-	});
-
-	return this;
-};
-$('input[type="text"]').capitalize();
 function handleClickReserveButton() {
 	$("#btnReserve").on("click", function (e) {
 		// let check = validateInputFields();
