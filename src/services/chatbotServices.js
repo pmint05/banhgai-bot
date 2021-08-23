@@ -153,7 +153,7 @@ let getStartTemplate = (username) => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT BÁNH",
-								webview_height_ratio: "full",
+								webview_height_ratio: "tall",
 								messenger_extensions: true,
 							},
 							{
@@ -171,12 +171,17 @@ let getStartTemplate = (username) => {
 };
 let getQuickReplyTemplate = () => {
 	let response = {
-		text: "Hi",
+		text: "Nếu bạn là người mới, hãy xem hướng dẫn sử dụng nhé 😉",
 		quick_replies: [
 			{
 				content_type: "text",
 				title: "HDSD Bot",
 				payload: "USAGE",
+			},
+			{
+				content_type: "user_phone_number",
+				title: "SĐT",
+				payload: "PHONE_NUM",
 			},
 		],
 	};
@@ -206,23 +211,23 @@ let getInfoTemplate = () => {
 				template_type: "button",
 				text: "BÁNH GAI BÀ THÚY là ",
 				buttons: [
-					{
-						type: "postback",
-						title: "MENU",
-						payload: "MENU",
-					},
+					// {
+					// 	type: "postback",
+					// 	title: "MENU",
+					// 	payload: "MENU",
+					// },
 					{
 						type: "phone_number",
 						title: "☎️ GỌI NGAY ☎️",
 						payload: "+84399514332",
 					},
-					{
-						type: "web_url",
-						url: `${process.env.URL_WEBVIEW_ORDER}`,
-						title: "ĐẶT BÁNH",
-						webview_height_ratio: "full",
-						messenger_extensions: true,
-					},
+					// {
+					// 	type: "web_url",
+					// 	url: `${process.env.URL_WEBVIEW_ORDER}`,
+					// 	title: "ĐẶT BÁNH",
+					// 	webview_height_ratio: "tall",
+					// 	messenger_extensions : true,
+					// },
 				],
 			},
 		},
@@ -261,7 +266,7 @@ let getMenuTemplate = () => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT NGAY",
-								webview_height_ratio: "full",
+								webview_height_ratio: "tall",
 								messenger_extensions: true,
 							},
 							{
@@ -281,7 +286,7 @@ let getMenuTemplate = () => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT NGAY",
-								webview_height_ratio: "full",
+								webview_height_ratio: "tall",
 								messenger_extensions: true,
 							},
 							{
@@ -301,7 +306,7 @@ let getMenuTemplate = () => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT NGAY",
-								webview_height_ratio: "full",
+								webview_height_ratio: "tall",
 								messenger_extensions: true,
 							},
 							{
@@ -321,7 +326,7 @@ let getMenuTemplate = () => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT NGAY",
-								webview_height_ratio: "full",
+								webview_height_ratio: "tall",
 								messenger_extensions: true,
 							},
 							{
@@ -341,7 +346,7 @@ let getMenuTemplate = () => {
 								type: "web_url",
 								url: `${process.env.URL_WEBVIEW_ORDER}`,
 								title: "ĐẶT NGAY",
-								webview_height_ratio: "full",
+								webview_height_ratio: "tall",
 								messenger_extensions: true,
 							},
 							{
