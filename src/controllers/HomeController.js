@@ -339,8 +339,58 @@ let handlePostReserve = async (req, res) => {
             \nGhi chú: ${req.body.note}
             `,
 		};
+		let response2 = {
+			attachment: {
+				type: "template",
+				payload: {
+					template_type: "receipt",
+					recipient_name: name,
+					order_number: "0",
+					currency: "VND",
+					payment_method: "Thanh toán khi nhận hàng",
+					order_url: "",
+					timestamp: "",
+					address: {
+						street_1: req.body.address,
+						// street_2: "",
+						// city: "Menlo Park",
+						// postal_code: "94025",
+						// state: "CA",
+						// country: "US",
+					},
+					// summary: {
+					// 	subtotal: 75.0,
+					// 	shipping_cost: 4.95,
+					// 	total_tax: 6.19,
+					// 	total_cost: 56.14,
+					// },
+					// adjustments: [
+					// 	{
+					// 		name: "New Customer Discount",
+					// 		amount: 20,
+					// 	},
+					// 	{
+					// 		name: "$10 Off Coupon",
+					// 		amount: 10,
+					// 	},
+					// ],
+					elements: [
+						{
+							title: req.body.typeOfCake,
+							subtitle: "",
+							quantity: req.body.number,
+							price: 25,
+							currency: "VND",
+							image_url:
+								"https://i.postimg.cc/rs93Bgqg/avt-remake.png",
+						},
+					],
+				},
+			},
+		};
 
 		await chatbotServices.callSendAPI(req.body.psid, response1);
+		await chatbotServices.callSendAPI(req.body.psid, response2);
 		return res.status(200).json({
 			message: "ok",
 			data: data,

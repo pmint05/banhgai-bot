@@ -162,8 +162,8 @@ form .form-row .textarea {
 }
 .input-data input:focus ~ label,
 .textarea textarea:focus ~ label,
-.input-data input:valid ~ label,
-.textarea textarea:valid ~ label {
+.input-data input:not(:placeholder-shown) ~ label,
+.textarea textarea:not(:placeholder-shown) ~ label {
 	transform: translateY(-25px);
 	font-size: 14px;
 	color: #111;
@@ -202,9 +202,9 @@ form .form-row .textarea {
 	transition: transform 0.3s ease;
 }
 .input-data input:focus ~ .underline:before,
-.input-data input:valid ~ .underline:before,
 .textarea textarea:focus ~ .underline:before,
-.textarea textarea:valid ~ .underline:before {
+.input-data input:not(:placeholder-shown) ~ .underline:before,
+.textarea textarea:not(:placeholder-shown) ~ .underline:before {
 	transform: scale(1);
 }
 
@@ -249,14 +249,14 @@ select {
 	outline: none;
 	padding: 0.5rem;
 }
-#address.is-invalid,
-#phone-number.is-invalid,
-#number.is-invalid {
-	border-bottom: 2px solid #ffaaaa;
+.address.is-invalid,
+.phoneNumber.is-invalid,
+.number.is-invalid {
+	border-bottom: 2px solid #ffaaaa !important;
 }
-.input-data #address.is-invalid + .underline::before,
-.input-data #phone-number.is-invalid + .underline::before,
-.input-data #number.is-invalid + .underline::before {
+.address.is-invalid + .underline::before,
+.phoneNumber.is-invalid + .underline::before,
+.number.is-invalid + .underline::before {
 	background: #ff3333;
 }
 #fullName,
