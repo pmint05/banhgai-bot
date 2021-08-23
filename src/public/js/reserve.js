@@ -32,7 +32,7 @@ function validateInputFields() {
 	let address = $("#address");
 	let numberOfCake = $("#number");
 
-	if (phoneNumber.length == 10) {
+	if (phoneNumber.val() == "") {
 		phoneNumber.addClass("is-invalid");
 		return true;
 	} else {
