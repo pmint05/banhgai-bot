@@ -326,12 +326,12 @@ let handlePostReserve = async (req, res) => {
 			name = username;
 		} else name = req.body.fullName;
 		let numOfCake = req.body.number;
-		cakeType = req.body.typeOfCake;
-		address = req.body.address;
-		note = req.body.note;
-		phoneNumber = req.body.phoneNumber;
-		productImageUrl;
-		price;
+		let cakeType = req.body.typeOfCake;
+		let address = req.body.address;
+		let note = req.body.note;
+		let phoneNumber = req.body.phoneNumber;
+		let productImageUrl;
+		let price;
 
 		// I demo response with sample text
 		// you can check database for customer order's status
