@@ -19,16 +19,6 @@ window.extAsyncInit = function () {
 			//set psid to input
 			$("#psid").val(thread_context.psid);
 			handleClickReserveButton();
-			$('input[type="text"]').keyup(function (evt) {
-				var txt = $(this).val();
-
-				// Regex taken from php.js (http://phpjs.org/functions/ucwords:569)
-				$(this).val(
-					txt.replace(/^(.)|s(.)/g, function ($1) {
-						return $1.toUpperCase();
-					})
-				);
-			});
 		},
 		function error(err) {
 			// error
@@ -65,12 +55,14 @@ window.extAsyncInit = function () {
 // }
 function handleClickReserveButton() {
 	$("#btnReserve").on("click", function (e) {
+		const uppercaseWords = (str) =>
+			str.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase());
 		// let check = validateInputFields();
 		let data = {
 			psid: $("#psid").val(),
-			fullName: $("#fullName").val(),
+			fullName: uppercaseWords($("#fullName").val()),
 			phoneNumber: $("#phoneNumber").val(),
-			address: $("#address").val(),
+			address: uppercaseWords($("#address").val()),
 			note: $("#note").val(),
 			typeOfCake: $("#type option:selected").html().trim(),
 			number: $("#number").val(),
