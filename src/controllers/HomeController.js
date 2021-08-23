@@ -2,7 +2,7 @@ require("dotenv").config();
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 import request from "request";
 import chatbotServices from "../services/chatbotServices";
-import { telegramServices } from "../services/telegramServices";
+import telegramServices from "../services/telegramServices";
 import moment from "moment";
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
