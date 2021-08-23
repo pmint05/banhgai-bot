@@ -171,19 +171,12 @@ let getStartTemplate = (username) => {
 };
 let getQuickReplyTemplate = () => {
 	let response = {
-		text: "Pick a color:",
+		text: "",
 		quick_replies: [
 			{
 				content_type: "text",
-				title: "Red",
-				payload: "<POSTBACK_PAYLOAD>",
-				image_url: "http://example.com/img/red.png",
-			},
-			{
-				content_type: "text",
-				title: "Green",
-				payload: "<POSTBACK_PAYLOAD>",
-				image_url: "http://example.com/img/green.png",
+				title: "HDSD Bot",
+				payload: "USAGE",
 			},
 		],
 	};
@@ -192,10 +185,12 @@ let getQuickReplyTemplate = () => {
 let handleSendInfo = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			let response = getInfoTemplate();
+			let response1 = getInfoTemplate();
+			let response2 = getQuickReplyTemplate();
 
 			//send generic template message
-			await callSendAPI(sender_psid, response);
+			await callSendAPI(sender_psid, response1);
+			await callSendAPI(sender_psid, response2);
 
 			resolve("done");
 		} catch (e) {
@@ -442,6 +437,22 @@ let handleSendBtroDetails = (sender_psid) => {
 		}
 	});
 };
+let handleSendUsage = (sender_psid) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			let response = {
+				text: "Page Bánh Gai Bà Thúy hoạt động 1 cách hoàn toàn tự động (không có sự can thiệp của con người)",
+			};
+
+			//send generic template message
+			await callSendAPI(sender_psid, response);
+
+			resolve("done");
+		} catch (e) {
+			reject(e);
+		}
+	});
+};
 
 module.exports = {
 	handleGetStarted: handleGetStarted,
@@ -454,4 +465,5 @@ module.exports = {
 	handleSendBtroDetails: handleSendBtroDetails,
 	callSendAPI: callSendAPI,
 	getUserName: getUserName,
+	handleSendUsage: handleSendUsage,
 };

@@ -105,9 +105,15 @@ let getWebhook = (req, res) => {
 // Handles messages events
 let handleMessage = async (sender_psid, received_message) => {
 	let response;
-
-	// Checks if the message contains text
+	//Check quick reply messages
+	if (received_message.quick_reply && received_message.quick_reply.payload) {
+		if (received_message.quick_reply.payload === "USAGE") {
+			await chatbotServices.handleSendUsage(sender_psid);
+		}
+		return;
+	}
 	if (received_message.text) {
+		// Checks if the message contains text
 		// Create the payload for a basic text message, which
 		// will be added to the body of our request to the Send API
 		response = {
