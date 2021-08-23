@@ -355,9 +355,9 @@ let handlePostReserve = async (req, res) => {
 					address: {
 						street_1: req.body.address,
 						street_2: "",
-						city: "",
-						postal_code: "",
-						state: "",
+						city: req.body.address,
+						postal_code: "120",
+						state: req.body.address,
 						country: "VN",
 					},
 					summary: {
@@ -370,7 +370,7 @@ let handlePostReserve = async (req, res) => {
 					elements: [
 						{
 							title: req.body.typeOfCake,
-							subtitle: "BGBT",
+							subtitle: req.body.note,
 							quantity: numOfCake,
 							price: 5000,
 							currency: "VND",
