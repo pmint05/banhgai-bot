@@ -330,17 +330,17 @@ let handlePostReserve = async (req, res) => {
 		};
 		// await writeDataToGoogleSheet(data);
 
-		let fullName = "";
+		let name = "";
 		if (req.body.fullName === "") {
-			fullName = username;
-		} else fullName = req.body.fullName;
+			name = username;
+		} else name = req.body.fullName;
 
 		// I demo response with sample text
 		// you can check database for customer order's status
 
 		let response1 = {
 			text: `---Thông tin khác hàng---
-            \nHọ và tên: ${fullName}
+            \nHọ và tên: ${name}
             \nSố điện thoại: ${req.body.phoneNumber}
             \nĐịa chỉ: ${req.body.address}
             \nLoại bánh: ${req.body.typeOfCake}
@@ -350,7 +350,6 @@ let handlePostReserve = async (req, res) => {
 		};
 
 		await chatbotServices.callSendAPI(req.body.psid, response1);
-
 		return res.status(200).json({
 			message: "ok",
 			data: data,

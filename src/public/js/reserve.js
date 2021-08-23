@@ -56,14 +56,14 @@ window.extAsyncInit = function () {
 
 function handleClickReserveButton() {
 	$("#btnReserve").on("click", function (e) {
-		let check = validateInputFields();
+		// let check = validateInputFields();
 		let data = {
 			psid: $("#psid").val(),
-			fullName: $("#full-name").val(),
-			phoneNumber: $("#phone-number").val(),
+			fullName: $("#fullName").val(),
+			phoneNumber: $("#phoneNumber").val(),
 			address: $("#address").val(),
 			note: $("#note").val(),
-			typeOfCake: $("#type option:selected").text(),
+			typeOfCake: $("#type option:selected").html(),
 			number: $("#number").val(),
 		};
 

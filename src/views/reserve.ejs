@@ -12,17 +12,16 @@
 	<body>
 		<div class="container">
 			<h1 class="title">Thông tin khách hàng</h1>
-			<form method="POST" action="/reserve-info" name="contact-form">
+			<form method="POST" action="" name="reserve-form">
 				<input type="text" id="psid" hidden />
 
 				<div class="form-row">
 					<div class="input-data">
 						<input
 							type="text"
-							required
-							class="full-name"
-							id="full-name"
-							name="full-name"
+							class="fullName"
+							id="fullName"
+							name="fullName"
 							autocomplete="on"
 						/>
 						<div class="underline"></div>
@@ -34,9 +33,9 @@
 						<input
 							type="tel"
 							required
-							class="phone-number"
-							id="phone-number"
-							name="phone-number"
+							class="phoneNumber"
+							id="phoneNumber"
+							name="phoneNumber"
 							autocomplete="on"
 						/>
 						<div class="underline"></div>
@@ -75,7 +74,7 @@
 							<input
 								type="number"
 								placeholder="Số nhà"
-								id="house-number"
+								id="houseNumber"
 								min="1"
 							/>
 						</div>
@@ -85,23 +84,23 @@
 					<div class="input-data type-of-cake">
 						<p>Loại bánh:</p>
 						<div class="cake-input">
-							<select name="select" class="type" id="type">
-								<option data-price="5" value="BGAI">
+							<select name="typeOfCake" class="type" id="type">
+								<option data-price="5" value="Bánh Gai">
 									Bánh Gai
 								</option>
-								<option data-price="5" value="BGIO">
+								<option data-price="5" value="Bánh Giò">
 									Bánh Giò
 								</option>
-								<option data-price="5" value="BROMM">
+								<option data-price="5" value="Bánh Rợm (Mặn)">
 									Bánh Rợm (Mặn)
 								</option>
-								<option data-price="5" value="BROMN">
+								<option data-price="5" value="Bánh Rợm (Ngọt)">
 									Bánh Rợm (Ngọt)
 								</option>
-								<option data-price="6" value="BKHOAI">
+								<option data-price="6" value="Bánh Khoai">
 									Bánh Khoai
 								</option>
-								<option data-price="5" value="BTRO">
+								<option data-price="5" value="Bánh Gio">
 									Bánh Gio
 								</option>
 							</select>
@@ -125,9 +124,8 @@
 						<textarea
 							rows="8"
 							cols="80"
-							required
-							class="message"
-							name="message"
+							class="note"
+							name="note"
 							id="note"
 							autocomplete="off"
 						></textarea>
