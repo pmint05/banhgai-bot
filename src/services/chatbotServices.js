@@ -175,14 +175,14 @@ let getQuickReplyTemplate = () => {
 		quick_replies: [
 			{
 				content_type: "text",
-				title: "HDSD Bot",
+				title: "Hướng dẫn sử dụng Bot",
 				payload: "USAGE",
 			},
-			{
-				content_type: "user_phone_number",
-				title: "SĐT",
-				payload: "PHONE_NUM",
-			},
+			// {
+			// 	content_type: "user_phone_number",
+			// 	title: "SĐT",
+			// 	payload: "PHONE_NUM",
+			// },
 		],
 	};
 	return response;
@@ -209,7 +209,7 @@ let getInfoTemplate = () => {
 			type: "template",
 			payload: {
 				template_type: "button",
-				text: "BÁNH GAI BÀ THÚY là ",
+				text: "BÁNH GAI BÀ THÚY là thương hiệu của các loại bánh truyền thống như bánh gai, bánh giò, bánh rợm, ...\nVới tuổi đời hơn 10 năm, BÁNH GAI BÀ THÚY cam kết sẽ mang đến những sản phẩm mang đậm chất truyền thống và có chất lượng tốt nhất đến với người tiêu dùng !❤️",
 				buttons: [
 					// {
 					// 	type: "postback",
