@@ -328,7 +328,7 @@ let handlePostReserve = async (req, res) => {
 			note: req.body.note,
 			username: username,
 		};
-		await writeDataToGoogleSheet(data);
+		// await writeDataToGoogleSheet(data);
 
 		let fullName = "";
 		if (req.body.fullName === "") {
@@ -353,6 +353,7 @@ let handlePostReserve = async (req, res) => {
 
 		return res.status(200).json({
 			message: "ok",
+			data: data,
 		});
 	} catch (e) {
 		console.log("err: ", e);
