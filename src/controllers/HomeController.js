@@ -2,6 +2,7 @@ require("dotenv").config();
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 import request from "request";
 import chatbotServices from "../services/chatbotServices";
+import { telegramServices } from "../services/telegramServices";
 import moment from "moment";
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -329,7 +330,7 @@ let handlePostReserve = async (req, res) => {
 			username: username,
 		};
 		await writeDataToGoogleSheet(data);
-
+		await telegramServices.sendNotification();
 		let name = "";
 		if (req.body.fullName === "") {
 			name = username;
