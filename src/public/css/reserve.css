@@ -91,6 +91,7 @@ a {
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
+	overflow: hidden;
 }
 .title {
 	font-size: 1.5rem;
