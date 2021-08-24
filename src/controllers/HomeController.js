@@ -198,6 +198,7 @@ let handleMessage = async (sender_psid, received_message) => {
 						},
 					],
 				};
+				callSendAPI(sender_psid, response);
 				break;
 		}
 	} else if (received_message.attachments) {
