@@ -12,7 +12,12 @@
 	<body>
 		<div class="container">
 			<h1 class="title">Thông tin khách hàng</h1>
-			<form method="POST" action="" name="reserve-form">
+			<form
+				method="POST"
+				action=""
+				name="reserve-form"
+				onsubmit="return validateInputFields()"
+			>
 				<input type="text" id="psid" hidden />
 
 				<div class="form-row">
