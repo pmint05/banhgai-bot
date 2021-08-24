@@ -259,19 +259,19 @@ let handleSendAvailableCakes = (sender_psid) => {
 };
 
 let getAvailableCakes = () => {
-	available_cakes.child("banh_gai").once("value", (snap) => {
+	available_cakes.ref("banh_gai").once("value", (snap) => {
 		available_banh_gai = snap.val();
 	});
-	available_cakes.child("banh_gio").once("value", (snap) => {
+	available_cakes.ref("banh_gio").once("value", (snap) => {
 		available_banh_gio = snap.val();
 	});
-	available_cakes.child("banh_rom").once("value", (snap) => {
+	available_cakes.ref("banh_rom").once("value", (snap) => {
 		available_banh_rom = snap.val();
 	});
-	available_cakes.child("banh_khoai").once("value", (snap) => {
+	available_cakes.ref("banh_khoai").once("value", (snap) => {
 		available_banh_khoai = snap.val();
 	});
-	available_cakes.child("banh_tro").once("value", (snap) => {
+	available_cakes.ref("banh_tro").once("value", (snap) => {
 		available_banh_tro = snap.val();
 	});
 	let response = {
