@@ -6,6 +6,15 @@ import chatbotServices from "../services/chatbotServices";
 import telegramServices from "../services/telegramServices";
 import moment from "moment";
 
+const admin = require("firebase-admin");
+const serviceAccount = require("../configs/ServiceAccountKey.json");
+admin.initializeApp({
+	credential: admin.credential.cert(serviceAccount),
+});
+const db = admin.firestore();
+
+let cake_data;
+
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 const GOOGLE_SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
@@ -37,7 +46,7 @@ let writeDataToGoogleSheet = async (data) => {
 	});
 };
 //process.env.NAME_VARIABLES
-let getHomePage = (req, res) => {
+let getHomePage = async (req, res) => {
 	return res.render("homepage.ejs");
 };
 let postWebhook = (req, res) => {
@@ -399,6 +408,16 @@ let handleReserve = (req, res) => {
 };
 let handlePostReserve = async (req, res) => {
 	try {
+		const doc = await db.collection("banhgai").doc("banhgai").get();
+		cake_data = doc.data();
+		let order_number = cake_data.order_number + 1;
+		var new_order_data = {
+			order_number: order_number,
+		};
+		const res = await db
+			.collection("banhgai")
+			.doc("banhgai")
+			.set(new_order_data);
 		let username = await chatbotServices.getUserName(req.body.psid);
 		let name = "";
 		if (req.body.fullName === "") {
@@ -436,6 +455,7 @@ let handlePostReserve = async (req, res) => {
             \nLoại bánh: ${cakeType}
             \nSố lượng: ${numOfCake}
             \nGhi chú: ${note}
+			\nĐơn số: ${order_number}
             `,
 		};
 

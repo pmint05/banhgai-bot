@@ -1,5 +1,4 @@
 require("dotenv").config();
-const admin = require("firebase-admin");
 import { response } from "express";
 import request from "request";
 
@@ -205,13 +204,6 @@ let handleSendInfo = (sender_psid) => {
 	});
 };
 let getInfoTemplate = async () => {
-	admin.initializeApp();
-
-	const db = admin.firestore();
-	const snapshot = await db.collection("banhgai").get();
-	snapshot.forEach((doc) => {
-		console.log(doc.id, "=>", doc.data());
-	});
 	let response = {
 		attachment: {
 			type: "template",
