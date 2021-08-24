@@ -249,7 +249,7 @@ let getInfoTemplate = () => {
 let handleSendAvailableCakes = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			let response = getAvailableCakes();
+			let response = await getAvailableCakes();
 
 			//send generic template message
 			await callSendAPI(sender_psid, response);
