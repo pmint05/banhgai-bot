@@ -56,9 +56,10 @@ function validateInputFields(event) {
 }
 function handleClickReserveButton() {
 	$("#btnReserve").on("click", function (e) {
+		e.preventDefault();
 		const uppercaseWords = (str) =>
 			str.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase());
-		let check = validateInputFields();
+		let check = validateInputFields(e);
 		let data = {
 			psid: $("#psid").val(),
 			fullName: uppercaseWords($("#fullName").val()),
