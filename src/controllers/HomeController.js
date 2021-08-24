@@ -39,6 +39,7 @@ let writeDataToGoogleSheet = async (data) => {
 	const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
 
 	await sheet.addRow({
+		"Đơn Số": data.order_number,
 		"Họ & Tên": data.fullName,
 		"Số Điện Thoại": data.phoneNumber,
 		"Địa Chỉ": data.address,
@@ -276,7 +277,7 @@ async function handlePostback(sender_psid, received_postback) {
 			await chatbotServices.handleSendInfo(sender_psid);
 			break;
 		case "AVAILABLE_CAKES":
-			await chatbotServices.handleSendInfo(sender_psid);
+			await chatbotServices.handleSendAvailableCakes(sender_psid);
 			break;
 		case "BGAI_DETAILS":
 			await chatbotServices.handleSendBgaiDetails(sender_psid);
@@ -445,6 +446,7 @@ let handlePostReserve = async (req, res) => {
 			number: numOfCake,
 			note: note,
 			username: username,
+			order_number: new_order_number,
 		};
 		await writeDataToGoogleSheet(data);
 		await telegramServices.sendNotification(data);
@@ -453,14 +455,7 @@ let handlePostReserve = async (req, res) => {
 		// you can check database for customer order's status
 
 		let response1 = {
-			text: `--- Thông tin khác hàng ---
-            \nHọ và tên: ${name}
-            \nSố điện thoại: ${phoneNumber}
-            \nĐịa chỉ: ${address}
-            \nLoại bánh: ${cakeType}
-            \nSố lượng: ${numOfCake}
-            \nGhi chú: ${note}
-			\nĐơn số: ${new_order_number}
+			text: `--- Thông tin khác hàng ---\n• Họ và tên: ${name}\n• Số điện thoại: ${phoneNumber}\n• Địa chỉ: ${address}\n• Loại bánh: ${cakeType}\n• Số lượng: ${numOfCake}\n• Ghi chú: ${note}\n• Đơn số: #${new_order_number}
             `,
 		};
 
@@ -530,7 +525,7 @@ let handlePostReserve = async (req, res) => {
 				payload: {
 					template_type: "receipt",
 					recipient_name: name,
-					order_number: "12345678902",
+					order_number: new_order_number,
 					currency: "VND",
 					payment_method: "Thanh toán khi nhận hàng",
 					order_url: "https://banhgaibathuy.herokuapp.com/",
