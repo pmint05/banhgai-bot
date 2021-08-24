@@ -260,7 +260,6 @@ let handleSendAvailableCakes = (sender_psid) => {
 		}
 	});
 };
-
 let getAvailableCakes = async () => {
 	await available_BGAI.once("value", (snap) => {
 		available_banh_gai = snap.val();
@@ -508,7 +507,27 @@ let handleSendUsage = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			let response = {
-				text: "Page Bánh Gai Bà Thúy hoạt động 1 cách hoàn toàn tự động, bạn không cần nhắn với page bất kì dòng tin nào mà thay vào đó hãy sử dụng những nút đính kèm với tin nhắn từ page hoặc trong menu cố định dưới phần nhập tin nhắn",
+				attachment: {
+					type: "template",
+					payload: {
+						template_type: "button",
+						text: "Page Bánh Gai Bà Thúy hoạt động 1 cách hoàn toàn tự động, bạn không cần nhắn với page bất kì dòng tin nào mà thay vào đó hãy sử dụng những nút đính kèm với tin nhắn từ page hoặc trong menu cố định dưới phần nhập tin nhắn. Cảm ơn bạn đã ghé thăm Page, chúc bạn một ngày mới tốt lành!😉❤️",
+						buttons: [
+							{
+								type: "postback",
+								title: "MENU",
+								payload: "MENU",
+							},
+							{
+								type: "web_url",
+								url: `${process.env.URL_WEBVIEW_ORDER}`,
+								title: "ĐẶT BÁNH",
+								webview_height_ratio: "tall",
+								messenger_extensions: true,
+							},
+						],
+					},
+				},
 			};
 
 			//send generic template message
