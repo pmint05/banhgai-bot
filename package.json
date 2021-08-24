@@ -21,6 +21,7 @@
 		"dotenv": "^8.6.0",
 		"ejs": "^3.1.6",
 		"express": "^4.17.1",
+		"firebase-admin": "^9.11.1",
 		"google-spreadsheet": "^3.1.15",
 		"moment": "^2.29.1",
 		"request": "^2.88.2"
