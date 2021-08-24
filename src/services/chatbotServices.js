@@ -205,6 +205,9 @@ let handleSendInfo = (sender_psid) => {
 	});
 };
 let getInfoTemplate = async () => {
+	admin.initializeApp();
+
+	const db = admin.firestore();
 	const snapshot = await db.collection("banhgai").get();
 	snapshot.forEach((doc) => {
 		console.log(doc.id, "=>", doc.data());
