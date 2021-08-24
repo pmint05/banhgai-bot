@@ -127,6 +127,8 @@ let handleMessage = async (sender_psid, received_message) => {
 						},
 					},
 				};
+				callSendAPI(sender_psid, response);
+				break;
 			case "Tôi có thể xem menu không?":
 				response = {
 					attachment: {
@@ -144,8 +146,9 @@ let handleMessage = async (sender_psid, received_message) => {
 						},
 					},
 				};
+				callSendAPI(sender_psid, response);
 				break;
-			case "Địa điểm kinh doanh của bạn ở đâu":
+			case "Địa điểm kinh doanh của bạn ở đâu?":
 				response = {
 					attachment: {
 						type: "template",
@@ -162,6 +165,7 @@ let handleMessage = async (sender_psid, received_message) => {
 						},
 					},
 				};
+				callSendAPI(sender_psid, response);
 				break;
 			case "Bạn có giao hàng không?":
 				response = {
@@ -180,6 +184,7 @@ let handleMessage = async (sender_psid, received_message) => {
 						},
 					},
 				};
+				callSendAPI(sender_psid, response);
 				break;
 
 			default:
