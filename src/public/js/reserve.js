@@ -32,7 +32,7 @@ function showErrPopup(text) {
 	errPopup.classList.add("show");
 	setTimeout(() => {
 		errPopup.classList.remove("show");
-	}, 1000);
+	}, 1500);
 }
 //validate inputs
 function validateInputFields(event) {
@@ -62,6 +62,7 @@ function validateInputFields(event) {
 	if (numberOfCake.val() == "") {
 		numberOfCake.focus();
 		numberOfCake.addClass("is-invalid");
+		showErrPopup("Số lượng không hợp lệ");
 		return true;
 	} else {
 		numberOfCake.removeClass("is-invalid");
