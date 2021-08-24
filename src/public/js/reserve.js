@@ -27,7 +27,8 @@ window.extAsyncInit = function () {
 	);
 };
 //validate inputs
-function validateInputFields() {
+function validateInputFields(event) {
+	event.preventDefault();
 	let phoneNumber = $("#phoneNumber");
 	let address = $("#address");
 	let numberOfCake = $("#number");
