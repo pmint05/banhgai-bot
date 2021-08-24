@@ -107,9 +107,82 @@ let handleMessage = async (sender_psid, received_message) => {
 		// Checks if the message contains text
 		// Create the payload for a basic text message, which
 		// will be added to the body of our request to the Send API
-		response = {
-			text: `You sent the message: "${received_message.text}". Now send me an attachment!`,
-		};
+		let message = received_message.text;
+
+		switch (message) {
+			case "Bạn phục vụ loại đồ ăn gì":
+				response = {
+					attachment: {
+						type: "template",
+						payload: {
+							template_type: "button",
+							text: 'Bên mình chuyên cung cấp các loại bánh truyền thống với chất lượng tuyệt hảo là giá cả phải chăng.\nBạn có thể nhấn vào "Menu" để biết các loại bánh mà bên mình cung cấp nhé 😉',
+							buttons: [
+								{
+									type: "postback",
+									title: "MENU",
+									payload: "MENU",
+								},
+							],
+						},
+					},
+				};
+			case "Tôi có thể xem menu không":
+				response = {
+					text: "Tất nhiên rồi, menu của bạn đây!",
+				};
+				await chatbotServices.handleSendMenu(sender_psid);
+				break;
+			case "Địa điểm kinh doanh của bạn ở đâu":
+				response = {
+					attachment: {
+						type: "template",
+						payload: {
+							template_type: "button",
+							text: 'Địa điểm kinh doanh của chúng tôi: Phổng, Vân Nham, Hữu Lũng, Lạng Sơn. Bạn có thể nhấn vào "THÔNG TIN" để biết thêm các thông tin liên hệ khác của chúng tôi 😉',
+							buttons: [
+								{
+									type: "postback",
+									title: "THÔNG TIN",
+									payload: "INFOMATION",
+								},
+							],
+						},
+					},
+				};
+				break;
+			case "Bạn có giao hàng không":
+				response = {
+					attachment: {
+						type: "template",
+						payload: {
+							template_type: "button",
+							text: "Có, chúng tôi nhận giao hàng tận nhà trong phạm vi xã Vân Nham. Những địa điểm xa hơn chúng tôi sẽ gửi hàng thông qua xe khách !",
+							buttons: [
+								{
+									type: "postback",
+									title: "THÔNG TIN",
+									payload: "INFOMATION",
+								},
+							],
+						},
+					},
+				};
+				break;
+
+			default:
+				let response = {
+					text: "Xin lỗi tôi chỉ là robot, tôi không hiểu tin nhắn của bạn. Bạn có thể xem cách tôi hoạt động bằng cách nhấn vào nút dưới đây. Cảm ơn bạn đã ghé thăm BÁNH GAI BÀ THÚY !❤️",
+					quick_replies: [
+						{
+							content_type: "text",
+							title: "HD sử dụng Bot",
+							payload: "USAGE",
+						},
+					],
+				};
+				break;
+		}
 	} else if (received_message.attachments) {
 		// Get the URL of the message attachment
 		let attachment_url = received_message.attachments[0].payload.url;
