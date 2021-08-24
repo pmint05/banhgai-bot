@@ -219,7 +219,7 @@ let handleSendInfo = (sender_psid) => {
 		}
 	});
 };
-let getInfoTemplate = async () => {
+let getInfoTemplate = () => {
 	let response = {
 		attachment: {
 			type: "template",
