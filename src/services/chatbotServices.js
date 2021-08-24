@@ -12,13 +12,16 @@ var otherApp = admin.initializeApp(
 	"otherApp"
 );
 var db = otherApp.database();
-let available_cakes = db.ref().child("available_cakes");
+let available_BGAI = db.ref().child("available_cakes/banh_gai");
+let available_BGIO = db.ref().child("available_cakes/banh_gio");
+let available_BROM = db.ref().child("available_cakes/banh_rom");
+let available_BKHOAI = db.ref().child("available_cakes/banh_khoai");
+let available_BTRO = db.ref().child("available_cakes/banh_tro");
 let available_banh_gai;
 let available_banh_gio;
 let available_banh_rom;
 let available_banh_khoai;
 let available_banh_tro;
-let new_available_cakes;
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const IMAGE_GET_STARTED = "https://i.postimg.cc/rs93Bgqg/avt-remake.png";
@@ -259,19 +262,19 @@ let handleSendAvailableCakes = (sender_psid) => {
 };
 
 let getAvailableCakes = () => {
-	available_cakes.ref("banh_gai").once("value", (snap) => {
+	available_BGAI.once("value", (snap) => {
 		available_banh_gai = snap.val();
 	});
-	available_cakes.ref("banh_gio").once("value", (snap) => {
+	available_BGIO.once("value", (snap) => {
 		available_banh_gio = snap.val();
 	});
-	available_cakes.ref("banh_rom").once("value", (snap) => {
+	available_BROM.once("value", (snap) => {
 		available_banh_rom = snap.val();
 	});
-	available_cakes.ref("banh_khoai").once("value", (snap) => {
+	available_BKHOAI.once("value", (snap) => {
 		available_banh_khoai = snap.val();
 	});
-	available_cakes.ref("banh_tro").once("value", (snap) => {
+	available_BTRO.once("value", (snap) => {
 		available_banh_tro = snap.val();
 	});
 	let response = {
