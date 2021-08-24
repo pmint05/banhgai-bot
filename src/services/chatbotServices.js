@@ -576,7 +576,7 @@ let handleSetLiveChat = (sender_psid) => {
 let getLiveChat = (sender_psid) => {
 	let response = {
 		recipient: { id: sender_psid },
-		target_app_id: "263902037430900",
+		new_owner_app_id: "263902037430900",
 		metadata: "Đã bật Live Chat, vui lòng chờ nhân viên vào phản hồi!",
 	};
 	return response;
