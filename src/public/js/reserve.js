@@ -26,6 +26,14 @@ window.extAsyncInit = function () {
 		}
 	);
 };
+function showErrPopup(text) {
+	var errPopup = document.querySelector(".errPopup");
+	errPopup.innerHTML = text;
+	errPopup.classList.add("show");
+	setTimeout(() => {
+		errPopup.classList.remove("show");
+	}, 1000);
+}
 //validate inputs
 function validateInputFields(event) {
 	event.preventDefault();
@@ -36,7 +44,7 @@ function validateInputFields(event) {
 	if (phoneNumber.val().length != 10) {
 		phoneNumber.addClass("is-invalid");
 		phoneNumber.focus();
-		$(".phoneError").show();
+		showErrPopup("Số điện thoại không hợp lệ");
 		return true;
 	} else {
 		phoneNumber.removeClass("is-invalid");
@@ -45,7 +53,7 @@ function validateInputFields(event) {
 	if (address.val().length < 5) {
 		address.focus();
 		address.addClass("is-invalid");
-		$(".addError").show();
+		showErrPopup("Địa chỉ không hợp lệ");
 		return true;
 	} else {
 		address.removeClass("is-invalid");

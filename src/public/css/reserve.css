@@ -105,7 +105,9 @@ form {
 form .form-row {
 	display: flex;
 	margin: 20px 0;
-	flex-direction: column;
+	/* flex-direction: column; */
+	width: 100%;
+	position: relative;
 }
 form .form-row .input-data {
 	width: 100%;
@@ -266,17 +268,33 @@ select {
 #address {
 	text-transform: capitalize;
 }
-.phoneError,
-.addError {
+.errPopup {
+	position: absolute;
+	top: -30px;
+	left: 50%;
+	padding: 10px;
+	border-radius: 10px;
+	z-index: 100;
+	background-color: #fffffc;
+	transform: translate(-50%, -50%);
+	min-width: 250px;
+	max-width: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px dashed #111;
 	color: #ff5555;
-	font-family: "Montserrat", sans-serif;
-	position: relative;
-	margin-left: 20px;
-	margin-top: 5px;
+	text-align: center;
+	display: block;
+	user-select: none;
+	pointer-events: none;
 	font-weight: 500;
-	display: none;
+	font-family: "Montserrat", sans-serif;
+	transition: 0.3s cubic-bezier(0.51, 0.92, 0.24, 1.15);
 }
-
+.errPopup.show {
+	top: 30px;
+}
 /* @media only screen and (max-width: 500px) {
 	.container {
 		display: flex;
