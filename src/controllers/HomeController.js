@@ -454,7 +454,7 @@ let handlePostReserve = async (req, res) => {
 		// I demo response with sample text
 		// you can check database for customer order's status
 		if (note == "") {
-			note = "~<Trống>~";
+			note = "<Trống>";
 		} else {
 			note = note;
 		}
