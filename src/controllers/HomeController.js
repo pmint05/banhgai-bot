@@ -39,7 +39,7 @@ let writeDataToGoogleSheet = async (data) => {
 	const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
 
 	await sheet.addRow({
-		"Đơn Số": data.order_number,
+		"Đơn Số": data.order_num,
 		"Họ & Tên": data.fullName,
 		"Số Điện Thoại": data.phoneNumber,
 		"Địa Chỉ": data.address,
@@ -446,7 +446,7 @@ let handlePostReserve = async (req, res) => {
 			number: numOfCake,
 			note: note,
 			username: username,
-			order_number: new_order_number,
+			order_num: new_order_number,
 		};
 		await writeDataToGoogleSheet(data);
 		await telegramServices.sendNotification(data);
@@ -455,8 +455,7 @@ let handlePostReserve = async (req, res) => {
 		// you can check database for customer order's status
 
 		let response1 = {
-			text: `--- Thông tin khác hàng ---\n• Họ và tên: ${name}\n• Số điện thoại: ${phoneNumber}\n• Địa chỉ: ${address}\n• Loại bánh: ${cakeType}\n• Số lượng: ${numOfCake}\n• Ghi chú: ${note}\n• Đơn số: #${new_order_number}
-            `,
+			text: `--- Thông tin khác hàng ---\n• Họ và tên: *${name}*\n• Số điện thoại: *${phoneNumber}*\n• Địa chỉ: *${address}*\n• Loại bánh: *${cakeType}*\n• Số lượng: *${numOfCake}*\n• Ghi chú: *${note}*\n• Đơn số: *#${new_order_number}*`,
 		};
 
 		if (cakeType == "Bánh Khoai") {

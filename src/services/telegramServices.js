@@ -16,7 +16,7 @@ let sendNotification = (recieved_data) => {
 			let data = {
 				chat_id: TELEGRAM_GROUP_ID,
 				parse_mode: "HTML",
-				text: `| -------- Đơn đặt mới -------- |\n| ---------------------------------------- |\n| 0. Tên Facebook: <strong>${recieved_data.username}</strong>\n| 1 .Họ & tên: <strong>${recieved_data.fullName}</strong>\n| 2. Số điện thoại: <strong>${phoneNumber}</strong>\n| 3 .Địa chỉ: <strong>${recieved_data.address}</strong>\n| 4. Loại bánh: <strong>${recieved_data.typeOfCake}</strong>\n| 5 .Số lượng: <strong>${recieved_data.number}</strong>\n| 6. Ghi chú: <strong>${recieved_data.note}</strong>\n| 6. Ghi chú: <strong>${recieved_data.order_number}</strong>\n| ---------------------------------------- |`,
+				text: `| -------- Đơn đặt mới -------- |\n| ---------------------------------------- |\n| 0. Tên Facebook: <strong>${recieved_data.username}</strong>\n| 1 .Họ & tên: <strong>${recieved_data.fullName}</strong>\n| 2. Số điện thoại: <strong>${phoneNumber}</strong>\n| 3 .Địa chỉ: <strong>${recieved_data.address}</strong>\n| 4. Loại bánh: <strong>${recieved_data.typeOfCake}</strong>\n| 5 .Số lượng: <strong>${recieved_data.number}</strong>\n| 6. Ghi chú: <strong>${recieved_data.note}</strong>\n| 6. Đơn số: <strong>${recieved_data.order_num}</strong>\n| ---------------------------------------- |`,
 			};
 			// https://api.telegram.org/bot1954437611:AAHpub5JP2ksiT-S-NHZSodOfWq-4nll3Us/sendMessage?chat_id=-1001514909519&text=welcome
 			request(
