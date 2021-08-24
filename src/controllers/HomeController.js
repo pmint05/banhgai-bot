@@ -114,7 +114,7 @@ let handleMessage = async (sender_psid, received_message) => {
 	//Check quick reply messages
 	if (received_message.quick_reply && received_message.quick_reply.payload) {
 		if (received_message.quick_reply.payload === "USAGE") {
-			await chatbotServices.handleSendAvailableCakes(sender_psid);
+			await chatbotServices.handleSendUsage(sender_psid);
 		}
 		return;
 	}
