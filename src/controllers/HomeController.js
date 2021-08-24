@@ -593,7 +593,7 @@ let handlePostReserve = async (req, res) => {
 						},
 					],
 					business_privacy: {
-						url: "https://banhgaibathuy.herokuapp.com/",
+						url: "m.me/101514218925044",
 					},
 					expires_in_days: 3, // Optional, default 1 day, business defines 1-7 days
 				},

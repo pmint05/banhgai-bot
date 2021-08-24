@@ -81,7 +81,7 @@ function handleClickReserveButton() {
 			fullName: uppercaseWords($("#fullName").val()),
 			phoneNumber: $("#phoneNumber").val(),
 			address: uppercaseWords($("#address").val()),
-			note: $("#note").val(),
+			note: $("#note").val().trim(),
 			typeOfCake: $("#type option:selected").html().trim(),
 			number: $("#number").val(),
 		};
