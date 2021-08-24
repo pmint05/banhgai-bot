@@ -1,4 +1,5 @@
 require("dotenv").config();
+const admin = require("firebase-admin");
 import { response } from "express";
 import request from "request";
 
@@ -204,6 +205,10 @@ let handleSendInfo = (sender_psid) => {
 	});
 };
 let getInfoTemplate = () => {
+	const snapshot = await db.collection("banhgai").get();
+	snapshot.forEach((doc) => {
+		console.log(doc.id, "=>", doc.data());
+	});
 	let response = {
 		attachment: {
 			type: "template",
@@ -211,23 +216,11 @@ let getInfoTemplate = () => {
 				template_type: "button",
 				text: "BÁNH GAI BÀ THÚY là thương hiệu của các loại bánh truyền thống như bánh gai, bánh giò, bánh rợm, ...\nVới tuổi đời hơn 10 năm, BÁNH GAI BÀ THÚY cam kết sẽ mang đến những sản phẩm mang đậm chất truyền thống và có chất lượng tốt nhất đến với người tiêu dùng !❤️",
 				buttons: [
-					// {
-					// 	type: "postback",
-					// 	title: "MENU",
-					// 	payload: "MENU",
-					// },
 					{
 						type: "phone_number",
 						title: "☎️ GỌI NGAY ☎️",
 						payload: "+84399514332",
 					},
-					// {
-					// 	type: "web_url",
-					// 	url: `${process.env.URL_WEBVIEW_ORDER}`,
-					// 	title: "ĐẶT BÁNH",
-					// 	webview_height_ratio: "tall",
-					// 	messenger_extensions : true,
-					// },
 				],
 			},
 		},
