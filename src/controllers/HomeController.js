@@ -1,6 +1,6 @@
 require("dotenv").config();
 const { GoogleSpreadsheet } = require("google-spreadsheet");
-const admin = require("firebase-admin");
+// const admin = require("firebase-admin");
 import request from "request";
 import chatbotServices from "../services/chatbotServices";
 import telegramServices from "../services/telegramServices";
@@ -399,16 +399,6 @@ let handleReserve = (req, res) => {
 };
 let handlePostReserve = async (req, res) => {
 	try {
-		//Get order_num from firebase
-		admin.initializeApp();
-
-		const db = admin.firestore();
-
-		const snapshot = await db.collection("banhgai").get();
-		snapshot.forEach((doc) => {
-			console.log(doc.id, "=>", doc.data());
-		});
-
 		let username = await chatbotServices.getUserName(req.body.psid);
 		let name = "";
 		if (req.body.fullName === "") {
