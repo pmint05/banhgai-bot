@@ -279,6 +279,9 @@ async function handlePostback(sender_psid, received_postback) {
 		case "AVAILABLE_CAKES":
 			await chatbotServices.handleSendAvailableCakes(sender_psid);
 			break;
+		case "LIVE_CHAT":
+			await chatbotServices.handleSetLiveChat(sender_psid);
+			break;
 		case "BGAI_DETAILS":
 			await chatbotServices.handleSendBgaiDetails(sender_psid);
 			break;

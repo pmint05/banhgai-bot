@@ -240,6 +240,11 @@ let getInfoTemplate = () => {
 						title: "XEM BÁNH SẴN CÓ",
 						payload: "AVAILABLE_CAKES",
 					},
+					{
+						type: "postback",
+						title: "LIVE CHAT",
+						payload: "LIVE_CHAT",
+					},
 				],
 			},
 		},
@@ -539,6 +544,43 @@ let handleSendUsage = (sender_psid) => {
 		}
 	});
 };
+let handleSetLiveChat = (sender_psid) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			// Construct the message body
+			let request_body = getLiveChat(sender_psid);
+			await sendTypingOn(sender_psid);
+			await sendMarkReadMessage(sender_psid);
+
+			// Send the HTTP request to the Messenger Platform
+			request(
+				{
+					uri: "https://graph.facebook.com/v2.6/me/pass_thread_control",
+					qs: { access_token: PAGE_ACCESS_TOKEN },
+					method: "POST",
+					json: request_body,
+				},
+				(err, res, body) => {
+					if (!err) {
+						resolve("message sent!");
+					} else {
+						console.error("Unable to send message:" + err);
+					}
+				}
+			);
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+let getLiveChat = (sender_psid) => {
+	let response = {
+		recipient: { id: sender_psid },
+		target_app_id: 263902037430900,
+		metadata: "Đã bật Live Chat, vui lòng chờ nhân viên vào phản hồi!",
+	};
+	return response;
+};
 
 module.exports = {
 	handleGetStarted: handleGetStarted,
@@ -553,4 +595,5 @@ module.exports = {
 	getUserName: getUserName,
 	handleSendUsage: handleSendUsage,
 	handleSendAvailableCakes: handleSendAvailableCakes,
+	handleSetLiveChat: handleSetLiveChat,
 };
