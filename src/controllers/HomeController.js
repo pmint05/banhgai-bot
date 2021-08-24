@@ -10,8 +10,11 @@ const admin = require("firebase-admin");
 const serviceAccount = require("../configs/ServiceAccountKey.json");
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
+	databaseURL:
+		"https://banhgai-chatbot-data-default-rtdb.asia-southeast1.firebasedatabase.app/",
 });
-const db = admin.firestore();
+// As an admin, the app has access to read and write all data, regardless of Security Rules
+var db = admin.database();
 
 let cake_data;
 
@@ -408,16 +411,13 @@ let handleReserve = (req, res) => {
 };
 let handlePostReserve = async (req, res) => {
 	try {
-		const doc = await db.collection("banhgai").doc("banhgai").get();
-		cake_data = doc.data();
-		let order_number = cake_data.order_number + 1;
+		var order_number = db.ref().child("order_number");
+		let new_order_number = order_number + 1;
 		var new_order_data = {
 			order_number: order_number,
 		};
-		const res = await db
-			.collection("banhgai")
-			.doc("banhgai")
-			.set(new_order_data);
+		const setNewData = db.ref().child("order_number").set(new_order_data);
+
 		let username = await chatbotServices.getUserName(req.body.psid);
 		let name = "";
 		if (req.body.fullName === "") {
@@ -455,7 +455,7 @@ let handlePostReserve = async (req, res) => {
             \nLoại bánh: ${cakeType}
             \nSố lượng: ${numOfCake}
             \nGhi chú: ${note}
-			\nĐơn số: ${order_number}
+			\nĐơn số: ${new_order_number}
             `,
 		};
 
