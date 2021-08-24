@@ -32,19 +32,19 @@ function validateInputFields() {
 	let address = $("#address");
 	let numberOfCake = $("#number");
 
-	if (phoneNumber.val() == "") {
+	if (phoneNumber.val().length != 10) {
 		phoneNumber.addClass("is-invalid");
 		return true;
 	} else {
 		phoneNumber.removeClass("is-invalid");
 	}
-	if (address.val() === "") {
+	if (address.val().length < 5) {
 		address.addClass("is-invalid");
 		return true;
 	} else {
 		address.removeClass("is-invalid");
 	}
-	if (numberOfCake.val() === "") {
+	if (numberOfCake.val() == "") {
 		numberOfCake.addClass("is-invalid");
 		return true;
 	} else {
