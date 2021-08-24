@@ -562,8 +562,48 @@ let handlePostReserve = async (req, res) => {
 			},
 		};
 
+		let response3 = {
+			text: "Cảm ơn bạn đã đặt hàng, chúng tôi sẽ lên hệ với bạn để xác nhận đơn hàng và thỏa thuận về ngày nhận hàng. Bạn thấy dịch vụ của chúng tôi thế nào? Hãy đánh giá ở bên dưới nhé !😉",
+		};
+		let response4 = {
+			attachment: {
+				type: "template",
+				payload: {
+					template_type: "customer_feedback",
+					title: "Đánh giá chất lượng của BÁNH GAI BÀ THÚY", // Business needs to define.
+					subtitle:
+						"Bạn thấy chất lượng dịch vụ của chúng tôi thế nào?", // Business needs to define.
+					button_title: "ĐÁNH GIÁ", // Business needs to define.
+					feedback_screens: [
+						{
+							questions: [
+								{
+									id: req.body.psid, // Unique id for question that business sets
+									type: "csat",
+									title: "Đánh giá chất lượng BÁNH GAI BÀ THÚY", // Optional. If business does not define, we show standard text. Standard text based on question type ("csat", "nps", "ces" >>> "text")
+									score_label: "neg_pos", // Optional
+									score_option: "five_stars", // Optional
+									// Optional. Inherits the title and id from the previous question on the same page.  Only free-from input is allowed. No other title will show.
+									follow_up: {
+										type: "free_form",
+										placeholder: "Thêm ghi chú ...", // Optional
+									},
+								},
+							],
+						},
+					],
+					business_privacy: {
+						url: "https://banhgaibathuy.herokuapp.com/",
+					},
+					expires_in_days: 3, // Optional, default 1 day, business defines 1-7 days
+				},
+			},
+		};
+
 		await chatbotServices.callSendAPI(req.body.psid, response1);
 		await chatbotServices.callSendAPI(req.body.psid, response2);
+		await chatbotServices.callSendAPI(req.body.psid, response3);
+		await chatbotServices.callSendAPI(req.body.psid, response4);
 		return res.status(200).json({
 			message: "ok",
 			data: data,
