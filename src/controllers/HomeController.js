@@ -1,11 +1,11 @@
 require("dotenv").config();
 const { GoogleSpreadsheet } = require("google-spreadsheet");
-// const admin = require("firebase-admin");
 import request from "request";
 import chatbotServices from "../services/chatbotServices";
 import telegramServices from "../services/telegramServices";
 import moment from "moment";
 
+// As an admin, the app has access to read and write all data, regardless of Security Rules
 const admin = require("firebase-admin");
 const serviceAccount = require("../configs/ServiceAccountKey.json");
 admin.initializeApp({
@@ -13,7 +13,6 @@ admin.initializeApp({
 	databaseURL:
 		"https://banhgai-chatbot-data-default-rtdb.asia-southeast1.firebasedatabase.app/",
 });
-// As an admin, the app has access to read and write all data, regardless of Security Rules
 var db = admin.database();
 
 let order_number = db.ref().child("order_number/order_number");
@@ -52,13 +51,6 @@ let writeDataToGoogleSheet = async (data) => {
 };
 //process.env.NAME_VARIABLES
 let getHomePage = async (req, res) => {
-	order_number.on("value", (snap) => {
-		old_order_number = snap.val();
-		new_order_number = old_order_number + 1;
-		db.ref().child("order_number").set({
-			order_number: new_order_number,
-		});
-	});
 	return res.render("homepage.ejs");
 };
 let postWebhook = (req, res) => {
@@ -121,7 +113,7 @@ let handleMessage = async (sender_psid, received_message) => {
 	//Check quick reply messages
 	if (received_message.quick_reply && received_message.quick_reply.payload) {
 		if (received_message.quick_reply.payload === "USAGE") {
-			await chatbotServices.handleSendUsage(sender_psid);
+			await chatbotServices.handleSendAvailableCakes(sender_psid);
 		}
 		return;
 	}
@@ -283,6 +275,9 @@ async function handlePostback(sender_psid, received_postback) {
 		case "INFOMATION":
 			await chatbotServices.handleSendInfo(sender_psid);
 			break;
+		case "AVAILABLE_CAKES":
+			await chatbotServices.handleSendInfo(sender_psid);
+			break;
 		case "BGAI_DETAILS":
 			await chatbotServices.handleSendBgaiDetails(sender_psid);
 			break;
@@ -432,6 +427,14 @@ let handlePostReserve = async (req, res) => {
 		let phoneNumber = req.body.phoneNumber;
 		let productImageUrl;
 		let price;
+
+		order_number.once("value", (snap) => {
+			old_order_number = snap.val();
+			new_order_number = old_order_number + 1;
+			db.ref().child("order_number").set({
+				order_number: new_order_number,
+			});
+		});
 
 		//write data to google sheet
 		let data = {

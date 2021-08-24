@@ -1,6 +1,24 @@
 require("dotenv").config();
 import { response } from "express";
 import request from "request";
+const admin = require("firebase-admin");
+const serviceAccount = require("../configs/ServiceAccountKey.json");
+var otherApp = admin.initializeApp(
+	{
+		credential: admin.credential.cert(serviceAccount),
+		databaseURL:
+			"https://banhgai-chatbot-data-default-rtdb.asia-southeast1.firebasedatabase.app/",
+	},
+	"otherApp"
+);
+var db = otherApp.database();
+let available_cakes = db.ref().child("available_cakes");
+let available_banh_gai;
+let available_banh_gio;
+let available_banh_rom;
+let available_banh_khoai;
+let available_banh_tro;
+let new_available_cakes;
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const IMAGE_GET_STARTED = "https://i.postimg.cc/rs93Bgqg/avt-remake.png";
@@ -115,7 +133,6 @@ let getUserName = (sender_psid) => {
 		);
 	});
 };
-
 let handleGetStarted = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
@@ -131,7 +148,6 @@ let handleGetStarted = (sender_psid) => {
 		}
 	});
 };
-
 let getStartTemplate = (username) => {
 	let response = {
 		attachment: {
@@ -216,13 +232,68 @@ let getInfoTemplate = async () => {
 						title: "☎️ GỌI NGAY ☎️",
 						payload: "+84399514332",
 					},
+					{
+						type: "postback",
+						title: "XEM BÁNH SẴN CÓ",
+						payload: "AVAILABLE_CAKES",
+					},
 				],
 			},
 		},
 	};
 	return response;
 };
+let handleSendAvailableCakes = (sender_psid) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			let response = getAvailableCakes();
 
+			//send generic template message
+			await callSendAPI(sender_psid, response);
+
+			resolve("done");
+		} catch (e) {
+			reject(e);
+		}
+	});
+};
+
+let getAvailableCakes = () => {
+	available_cakes.child("banh_gai").once("value", (snap) => {
+		available_banh_gai = snap.val();
+	});
+	available_cakes.child("banh_gio").once("value", (snap) => {
+		available_banh_gio = snap.val();
+	});
+	available_cakes.child("banh_rom").once("value", (snap) => {
+		available_banh_rom = snap.val();
+	});
+	available_cakes.child("banh_khoai").once("value", (snap) => {
+		available_banh_khoai = snap.val();
+	});
+	available_cakes.child("banh_tro").once("value", (snap) => {
+		available_banh_tro = snap.val();
+	});
+	let response = {
+		attachment: {
+			type: "template",
+			payload: {
+				template_type: "button",
+				text: `▷ Số bánh sẵn có:\n•Bánh Gai: ${available_banh_gai}\n•Bánh Giò: ${available_banh_gio}\n•Bánh Rợm: ${available_banh_rom}\n•Bánh Khoai: ${available_banh_khoai}\n•Bánh gio: ${available_banh_tro}`,
+				buttons: [
+					{
+						type: "web_url",
+						url: `${process.env.URL_WEBVIEW_ORDER}`,
+						title: "ĐẶT NGAY",
+						webview_height_ratio: "tall",
+						messenger_extensions: true,
+					},
+				],
+			},
+		},
+	};
+	return response;
+};
 let handleSendMenu = (sender_psid) => {
 	return new Promise(async (resolve, reject) => {
 		try {
@@ -459,4 +530,5 @@ module.exports = {
 	callSendAPI: callSendAPI,
 	getUserName: getUserName,
 	handleSendUsage: handleSendUsage,
+	handleSendAvailableCakes: handleSendAvailableCakes,
 };
