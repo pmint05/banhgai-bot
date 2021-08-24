@@ -35,17 +35,24 @@ function validateInputFields(event) {
 
 	if (phoneNumber.val().length != 10) {
 		phoneNumber.addClass("is-invalid");
+		phoneNumber.focus();
+		$(".phoneError").show();
 		return true;
 	} else {
 		phoneNumber.removeClass("is-invalid");
+		$(".phoneError").hide();
 	}
 	if (address.val().length < 5) {
+		address.focus();
 		address.addClass("is-invalid");
+		$(".addError").show();
 		return true;
 	} else {
 		address.removeClass("is-invalid");
+		$(".addError").hide();
 	}
 	if (numberOfCake.val() == "") {
+		numberOfCake.focus();
 		numberOfCake.addClass("is-invalid");
 		return true;
 	} else {

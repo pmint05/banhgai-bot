@@ -581,7 +581,7 @@ let handlePostReserve = async (req, res) => {
 									id: req.body.psid, // Unique id for question that business sets
 									type: "csat",
 									title: "Đánh giá chất lượng BÁNH GAI BÀ THÚY", // Optional. If business does not define, we show standard text. Standard text based on question type ("csat", "nps", "ces" >>> "text")
-									score_label: "neg_pos", // Optional
+									score_label: "dis_sat", // Optional
 									score_option: "five_stars", // Optional
 									// Optional. Inherits the title and id from the previous question on the same page.  Only free-from input is allowed. No other title will show.
 									follow_up: {
@@ -602,8 +602,13 @@ let handlePostReserve = async (req, res) => {
 
 		await chatbotServices.callSendAPI(req.body.psid, response1);
 		await chatbotServices.callSendAPI(req.body.psid, response2);
-		await chatbotServices.callSendAPI(req.body.psid, response3);
-		await chatbotServices.callSendAPI(req.body.psid, response4);
+		setTimeout(async () => {
+			await chatbotServices.callSendAPI(req.body.psid, response3);
+		}, 2000);
+		setTimeout(async () => {
+			await chatbotServices.callSendAPI(req.body.psid, response4);
+		}, 3000);
+
 		return res.status(200).json({
 			message: "ok",
 			data: data,
