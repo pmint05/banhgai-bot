@@ -261,20 +261,20 @@ let handleSendAvailableCakes = (sender_psid) => {
 	});
 };
 
-let getAvailableCakes = () => {
-	available_BGAI.once("value", (snap) => {
+let getAvailableCakes = async () => {
+	await available_BGAI.once("value", (snap) => {
 		available_banh_gai = snap.val();
 	});
-	available_BGIO.once("value", (snap) => {
+	await available_BGIO.once("value", (snap) => {
 		available_banh_gio = snap.val();
 	});
-	available_BROM.once("value", (snap) => {
+	await available_BROM.once("value", (snap) => {
 		available_banh_rom = snap.val();
 	});
-	available_BKHOAI.once("value", (snap) => {
+	await available_BKHOAI.once("value", (snap) => {
 		available_banh_khoai = snap.val();
 	});
-	available_BTRO.once("value", (snap) => {
+	await available_BTRO.once("value", (snap) => {
 		available_banh_tro = snap.val();
 	});
 	let response = {
@@ -282,7 +282,7 @@ let getAvailableCakes = () => {
 			type: "template",
 			payload: {
 				template_type: "button",
-				text: `▷ Số bánh sẵn có:\n•Bánh Gai: ${available_banh_gai}\n•Bánh Giò: ${available_banh_gio}\n•Bánh Rợm: ${available_banh_rom}\n•Bánh Khoai: ${available_banh_khoai}\n•Bánh gio: ${available_banh_tro}`,
+				text: `▷ Số bánh sẵn có:\n• Bánh Gai: ${available_banh_gai}\n• Bánh Giò: ${available_banh_gio}\n• Bánh Rợm: ${available_banh_rom}\n• Bánh Khoai: ${available_banh_khoai}\n• Bánh gio: ${available_banh_tro}`,
 				buttons: [
 					{
 						type: "web_url",
