@@ -110,7 +110,7 @@ let handleMessage = async (sender_psid, received_message) => {
 		let message = received_message.text;
 
 		switch (message) {
-			case "Bạn phục vụ loại đồ ăn gì":
+			case "Bạn phục vụ loại đồ ăn gì?":
 				response = {
 					attachment: {
 						type: "template",
@@ -127,11 +127,23 @@ let handleMessage = async (sender_psid, received_message) => {
 						},
 					},
 				};
-			case "Tôi có thể xem menu không":
+			case "Tôi có thể xem menu không?":
 				response = {
-					text: "Tất nhiên rồi, menu của bạn đây!",
+					attachment: {
+						type: "template",
+						payload: {
+							template_type: "button",
+							text: "Tất nhiên rồi, bạn có thể xem menu của chúng tôi bằng cách nhấn nút bên dưới 😉",
+							buttons: [
+								{
+									type: "postback",
+									title: "MENU",
+									payload: "MENU",
+								},
+							],
+						},
+					},
 				};
-				await chatbotServices.handleSendMenu(sender_psid);
 				break;
 			case "Địa điểm kinh doanh của bạn ở đâu":
 				response = {
@@ -151,7 +163,7 @@ let handleMessage = async (sender_psid, received_message) => {
 					},
 				};
 				break;
-			case "Bạn có giao hàng không":
+			case "Bạn có giao hàng không?":
 				response = {
 					attachment: {
 						type: "template",
