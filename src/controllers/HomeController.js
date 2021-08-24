@@ -429,7 +429,7 @@ let handlePostReserve = async (req, res) => {
 		let productImageUrl;
 		let price;
 
-		order_number.once("value", (snap) => {
+		await order_number.once("value", (snap) => {
 			old_order_number = snap.val();
 			new_order_number = old_order_number + 1;
 			db.ref().child("order_number").set({
@@ -453,7 +453,11 @@ let handlePostReserve = async (req, res) => {
 
 		// I demo response with sample text
 		// you can check database for customer order's status
-
+		if (note == "") {
+			note = "~<Trống>~";
+		} else {
+			note = note;
+		}
 		let response1 = {
 			text: `--- Thông tin khác hàng ---\n• Họ và tên: *${name}*\n• Số điện thoại: *${phoneNumber}*\n• Địa chỉ: *${address}*\n• Loại bánh: *${cakeType}*\n• Số lượng: *${numOfCake}*\n• Ghi chú: *${note}*\n• Đơn số: *#${new_order_number}*`,
 		};
