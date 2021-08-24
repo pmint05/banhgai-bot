@@ -399,19 +399,6 @@ let handleReserve = (req, res) => {
 let handlePostReserve = async (req, res) => {
 	try {
 		let username = await chatbotServices.getUserName(req.body.psid);
-
-		//write data to google sheet
-		let data = {
-			fullName: req.body.fullName,
-			phoneNumber: `'${req.body.phoneNumber}`,
-			address: req.body.address,
-			typeOfCake: req.body.typeOfCake,
-			number: req.body.number,
-			note: req.body.note,
-			username: username,
-		};
-		await writeDataToGoogleSheet(data);
-		await telegramServices.sendNotification(data);
 		let name = "";
 		if (req.body.fullName === "") {
 			name = username;
@@ -424,11 +411,24 @@ let handlePostReserve = async (req, res) => {
 		let productImageUrl;
 		let price;
 
+		//write data to google sheet
+		let data = {
+			fullName: name,
+			phoneNumber: `'${phoneNumber}`,
+			address: address,
+			typeOfCake: cakeType,
+			number: numOfCake,
+			note: note,
+			username: username,
+		};
+		await writeDataToGoogleSheet(data);
+		await telegramServices.sendNotification(data);
+
 		// I demo response with sample text
 		// you can check database for customer order's status
 
 		let response1 = {
-			text: `---Thông tin khác hàng---
+			text: `--- Thông tin khác hàng ---
             \nHọ và tên: ${name}
             \nSố điện thoại: ${phoneNumber}
             \nĐịa chỉ: ${address}
@@ -469,6 +469,35 @@ let handlePostReserve = async (req, res) => {
 			default:
 				break;
 		}
+		let address_1;
+		let address_2;
+		let address_3;
+		let addressSplitted = address.split(",");
+		switch (addressSplitted.length) {
+			case 1:
+				address_1 = addressSplitted[0];
+				address_2 = addressSplitted[0];
+				address_3 = addressSplitted[0];
+				break;
+			case 2:
+				address_1 = addressSplitted[0];
+				address_2 = addressSplitted[0];
+				address_3 = addressSplitted[1];
+				break;
+			case 3:
+				address_1 = addressSplitted[0];
+				address_2 = addressSplitted[1];
+				address_3 = addressSplitted[2];
+				break;
+			case 4:
+				address_1 = addressSplitted[0];
+				address_2 = addressSplitted[1];
+				address_3 = addressSplitted[2] + addressSplitted[3];
+				break;
+
+			default:
+				break;
+		}
 		let response2 = {
 			attachment: {
 				type: "template",
@@ -481,11 +510,11 @@ let handlePostReserve = async (req, res) => {
 					order_url: "https://banhgaibathuy.herokuapp.com/",
 					timestamp: moment().unix(),
 					address: {
-						street_1: address,
+						street_1: address_1,
 						street_2: "",
-						city: address,
+						city: address_2,
 						postal_code: phoneNumber,
-						state: address,
+						state: address_3,
 						country: "VN",
 					},
 					summary: {
