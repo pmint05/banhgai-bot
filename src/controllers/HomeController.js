@@ -16,6 +16,10 @@ admin.initializeApp({
 // As an admin, the app has access to read and write all data, regardless of Security Rules
 var db = admin.database();
 
+let order_number = db.ref().child("order_number/order_number");
+let old_order_number;
+let new_order_number;
+
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 const GOOGLE_SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
@@ -48,9 +52,6 @@ let writeDataToGoogleSheet = async (data) => {
 };
 //process.env.NAME_VARIABLES
 let getHomePage = async (req, res) => {
-	var order_number = db.ref().child("order_number/order_number");
-	let old_order_number;
-	let new_order_number;
 	order_number.on("value", (snap) => {
 		old_order_number = snap.val();
 		new_order_number = old_order_number + 1;
