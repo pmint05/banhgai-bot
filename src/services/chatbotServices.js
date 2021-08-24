@@ -204,7 +204,7 @@ let handleSendInfo = (sender_psid) => {
 		}
 	});
 };
-let getInfoTemplate = () => {
+let getInfoTemplate = async () => {
 	const snapshot = await db.collection("banhgai").get();
 	snapshot.forEach((doc) => {
 		console.log(doc.id, "=>", doc.data());
