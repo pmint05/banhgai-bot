@@ -417,6 +417,11 @@ let setupPersistentMenu = async (req, res) => {
 let handleReserve = (req, res) => {
 	return res.render("reserve.ejs");
 };
+let handleGetReserve = async (req, res) => {
+	return res.status(200).json({
+		status: 200,
+	});
+};
 let handlePostReserve = async (req, res) => {
 	try {
 		let username = await chatbotServices.getUserName(req.body.psid);
@@ -631,4 +636,5 @@ module.exports = {
 	setupPersistentMenu: setupPersistentMenu,
 	handleReserve: handleReserve,
 	handlePostReserve: handlePostReserve,
+	handleGetReserve: handleGetReserve,
 };

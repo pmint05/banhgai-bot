@@ -16,7 +16,7 @@ let initWebRoutes = (app) => {
 
 	router.get("/reserve", homeController.handleReserve);
 	router.post("/reserve-info", homeController.handlePostReserve);
-	router.get("/reserve-info", alert(Hello));
+	router.get("/reserve-info", homeController.handleGetReserve);
 	// router.get("/reserve-info", homeController.handlePostReserve);
 
 	return app.use("/", router);
