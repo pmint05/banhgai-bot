@@ -18,7 +18,6 @@ window.extAsyncInit = function () {
 			// success
 			//set psid to input
 			$("#psid").val(thread_context.psid);
-			handleClickReserveButton();
 		},
 		function error(err) {
 			// error
@@ -97,7 +96,7 @@ function handleClickReserveButton() {
 					console.log(err);
 				}
 			);
-            var site = "https://banhgaibathuy.herokuapp.com";
+			var site = "https://banhgaibathuy.herokuapp.com";
 			//send data to node.js server
 			$.ajax({
 				// url: `${window.location.origin}/reserve-info`,
@@ -114,7 +113,7 @@ function handleClickReserveButton() {
 		}
 	});
 }
-
+handleClickReserveButton();
 // var Parameter = {
 // 	url: "vn.json", //Đường dẫn đến file chứa dữ liệu hoặc api do backend cung cấp
 // 	method: "GET", //do backend cung cấp
