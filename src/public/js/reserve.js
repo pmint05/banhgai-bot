@@ -97,10 +97,11 @@ function handleClickReserveButton() {
 					console.log(err);
 				}
 			);
-
+            var site = "https://banhgaibathuy.herokuapp.com";
 			//send data to node.js server
 			$.ajax({
-				url: `${window.location.origin}/reserve-info`,
+				// url: `${window.location.origin}/reserve-info`,
+				url: `${site}/reserve-info`,
 				method: "POST",
 				data: data,
 				success: function (data) {
