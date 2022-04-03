@@ -337,8 +337,8 @@ let setupProfile = async (req, res) => {
 	let request_body = {
 		get_started: { payload: "GET_STARTED" },
 		whitelisted_domains: [
-			"https://banhgaibathuy.herokuapp.com/",
-			"https://banhgaibathuy.herokuapp.com/reserve",
+			"https://banhgai-bot.herokuapp.com/",
+			"https://banhgai-bot.herokuapp.com/reserve",
 		],
 	};
 
