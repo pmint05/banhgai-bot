@@ -10,6 +10,8 @@
 	fjs.parentNode.insertBefore(js, fjs);
 })(document, "script", "Messenger");
 window.extAsyncInit = function () {
+	document.querySelector('[name="reserve-form"]').onsubmit = (e) =>
+		e.preventDefault();
 	// the Messenger Extensions JS SDK is done loading
 
 	MessengerExtensions.getContext(
@@ -23,6 +25,25 @@ window.extAsyncInit = function () {
 		function error(err) {
 			// error
 			console.log("Reserve error:", err);
+			let numberInput = document.querySelector("#number");
+			numberInput.oninput = () => {
+				updateCost();
+			};
+			$("#type").on("change", () => {
+				updateCost();
+			});
+			let updateCost = () => {
+				let price = $("#type option:selected").data("price");
+				let total_cost = document.querySelector("#total_cost");
+				total_cost.innerHTML = `${
+					numberInput.value || 0
+				} x ${price}k = ${price * numberInput.value}k`;
+				if (numberInput.value != 0) {
+					$(".total_cost").addClass("active");
+				} else {
+					$(".total_cost").removeClass("active");
+				}
+			};
 		}
 	);
 };
@@ -70,6 +91,7 @@ function validateInputFields(event) {
 
 	return false;
 }
+
 function handleClickReserveButton() {
 	$("#btnReserve").on("click", function (e) {
 		e.preventDefault();
@@ -97,7 +119,7 @@ function handleClickReserveButton() {
 					console.log(err);
 				}
 			);
-			var site = "https://banhgaibathuy.herokuapp.com";
+			var site = "https://banhgai-bot.herokuapp.com";
 			//send data to node.js server
 			$.ajax({
 				// url: `${window.location.origin}/reserve-info`,

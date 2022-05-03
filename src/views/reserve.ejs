@@ -17,7 +17,7 @@
 				method="POST"
 				action=""
 				name="reserve-form"
-				onsubmit="return validateInputFields(e)"
+				onsubmit="validateInputFields(e)"
 			>
 				<input type="text" id="psid" hidden />
 
@@ -30,6 +30,7 @@
 							id="fullName"
 							name="fullName"
 							autocomplete="on"
+                            required
 						/>
 						<div class="underline"></div>
 						<label for="">Họ và tên</label>
@@ -122,6 +123,7 @@
 									id="number"
 									name="number"
 									autocomplete="on"
+                                    min="10"
 									max="1500"
 								/>
 								<div class="underline"></div>
@@ -130,6 +132,11 @@
 						</div>
 					</div>
 				</div>
+                <div class="form-row total_cost">
+                    <span id="total_cost">0 x 5k = 0k</span>
+                    <div class="underline"></div>
+                    <label for="">Thành tiền</label>
+                </div>
 				<div class="form-row">
 					<div class="input-data textarea">
 						<textarea
